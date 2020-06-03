@@ -4,24 +4,12 @@ export const feed = () => {
   container.innerHTML = `
     <form class="container-feed">
     <label for="page-feed">
-      <input id="email" class="btn" placeholder='example@example.com' type='email'>
+      <input id="post" class="btn" placeholder='O que você está pensando' type='text'>
     </label>
-    <label for="page-password">
-      <input id="password" class="btn" placeholder='Digite sua senha' type='password'>
-    </label>  
-      <button id='login-btn' class='login-btn'>Login</button>
-      <button id='google-btn' class='login-btn'>Google</button>
-      <p>Ainda não tem conta?<a href='#register'>Registre-se!</a></p>
+      <button id='login-btn' class="feed-btn-postar">Postar</button>
+      <button id='google-btn' class="feed-btn-logout">Logout</button>
     </form>
-
-
-
-        <form>
-          <input id='post' placeholder='O que você está pensando' type='text'>
-          <button id='login-btn'>Postar</button>
-          <button id='google-btn'>Logout</button>
-        </form>
-      `;
+`;
 
   /*   const email = container.querySelector('#email');
     const password = container.querySelector('#password');
