@@ -4,7 +4,7 @@ import { userLogin, loginGoogle } from './data.js';
 export const home = () => {
   const container = document.createElement('div');
 
-  container.innerHTML = `
+  container.innerHTML = `  
     <form class="container-home">
     <label for="page-home">
       <input id="email" class="btn" placeholder='example@example.com' type='email'>
@@ -13,7 +13,7 @@ export const home = () => {
       <input id="password" class="btn" placeholder='Digite sua senha' type='password'>
     </label>  
       <button id='login-btn' class='login-btn'>Login</button>
-      <button id='google-btn' class='login-btn'>Google</button>
+      <button id='google-btn'>Google</button>
       <p>Ainda não tem conta?<a href='#register'>Registre-se!</a></p>
     </form>
   `;
