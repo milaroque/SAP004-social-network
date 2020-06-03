@@ -1,0 +1,35 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+ body {
+    font-family: 'Pacifico', cursive;
+    font-family: 'Roboto', sans-serif;
+
+ }
+ body, .container-home{
+     display: flex;
+     align-items: center;
+     flex-direction: column-reverse;
+     justify-content: center;
+     background: #F7FCFC;;
+ }
+ .btn{
+     
+    width: 226px;
+    height: 33px;
+    left: 47px;
+    top: 282px;    
+    border-radius: 18px;
+    background: #D0D6C1;
+ }
+ .loginBtn{
+width: 108px;
+height: 26px;
+left: 0px;
+top: 0px;
+background: #D0D6C1;
+border-radius: 18px;
+ }
