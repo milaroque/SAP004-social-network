@@ -4,18 +4,18 @@ import { userLogin, loginGoogle } from './data.js';
 export const home = () => {
   const container = document.createElement('div');
 
-  container.innerHTML = `  
-    <form class="container-home">
-    <label for="page-home">
-      <input id="email" class="btn" placeholder='example@example.com' type='email'>
-    </label>
-    <label for="page-password">
-      <input id="password" class="btn" placeholder='Digite sua senha' type='password'>
-    </label>  
-      <button id='login-btn' class='login-btn'>Login</button>
-      <button id='google-btn'>Google</button>
-      <p>Ainda não tem conta?<a href='#register'>Registre-se!</a></p>
-    </form>
+  container.innerHTML = `<div class='logo'><figure class="image">
+  <img src="../../assets/logo-sos.png" class='img-logo'>
+</figure></div>
+   <div class='dcontainer-home'> 
+  <ul class="list-home">
+  <li><input id="email" class="btn" placeholder='example@example.com' type='email'></li>
+  <li><input id="password" class="btn" placeholder='Digite sua senha' type='password'></li>
+  <li><button id='login-btn' class='login-btn'>Login</button></li>
+  <li><button id='google-btn'>Google</button></li>
+  <li><p>Ainda não tem conta?<a href='#register'>Registre-se!</a></p></li>
+</ul>
+    </div>
   `;
 
   const email = container.querySelector('#email');
