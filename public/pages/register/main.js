@@ -5,7 +5,7 @@ export const register = () => {
 
   container.innerHTML = `
     <form class="form-register">
-    <label for="register-name">
+    <label for="page-register">
       <input id="name" class="btn" placeholder='Nome' type='text'>
     </label>
     <label for="register-email">
