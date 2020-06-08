@@ -5,6 +5,7 @@ export const userLogin = (email, password) => {
     .then(() => {
       alert(`Bem vindx`);
       window.location.hash = '#feed';
+      
     })
     .catch(function (error) {
       // Handle Errors here.
