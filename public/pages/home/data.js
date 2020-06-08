@@ -5,12 +5,15 @@ export const userLogin = (email, password) => {
     .then(() => {
       alert(`Bem vindx`);
       window.location.hash = '#feed';
-      
     })
     .catch(function (error) {
       // Handle Errors here.
       var errorCode = error.code;
       var errorMessage = error.message;
+      var msgError = 'The password is invalid or the user does not have a password.'
+      console.log(errorCode);
+      console.log(errorMessage);
+      alert(msgError);
       // ...
     }); email - password.html
 }
