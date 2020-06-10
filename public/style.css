@@ -48,11 +48,12 @@ li {
   cursor: pointer;
 }
 
-.google {
+.google{
   cursor: pointer;
   width: 40px;
+ border: none;
+ border-radius: 35px;
 }
-
 .list-home{
   justify-content: center;
   margin-bottom: 42px;
