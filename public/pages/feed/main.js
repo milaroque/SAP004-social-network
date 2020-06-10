@@ -35,12 +35,13 @@ export const feed = () => {
   const template = (arrayPosts) => {
     allPosts.innerHTML = arrayPosts.map(post => `
     <div>${post.text}</div>
-    <div>${post.email} ${post.date}</div>
+    <div>Postado por: ${post.user}, em ${post.date}</div>
     <button id='like-btn'><img class='likes' src='../../assets/001-paw.png' width='30'>${post.likes}</button>'
     `).join("")
+
+    
   }
 
   return container;
 };
-
 
