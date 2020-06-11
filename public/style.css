@@ -33,20 +33,22 @@ li {
 }
 
 .navbar{
-  width: 100vw;
+width: 100vw;
 height: 56px;
-left: -2px;
 top: 0px;
 background: #B4DAD2;
 border: 1px solid #F2F2F2;
 box-sizing: border-box;
+position: fixed;
+z-index: 10;
 
 }
 .profile{
+border: 5px solid black;
 width: 100vw;
 height: 84px;
-left: 0px;
-top: 56px;
+margin-top: 56px;
+
 }
 .post {
 width: 80vw;

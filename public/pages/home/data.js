@@ -1,4 +1,3 @@
-// Aqui serão exportadas as funções que irão ser usadas
 export const userLogin = (email, password) => {
   firebase.auth()
     .signInWithEmailAndPassword(email, password)

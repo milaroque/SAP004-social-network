@@ -3,18 +3,22 @@ import { logout, createPost, timeline } from './data.js'
 export const feed = () => {
   const container = document.createElement('div');
 
-  container.innerHTML = ` <div><nav id='' class='navbar'><button id='logout-btn' class="feed-btn-logout">Logout</button></nav>
-  <div class='profile'>mmm</div>
-  <main><form class="container-feed">
-  <form class='class='postfeed'>
-  <label for="page-feed" class='postcont'>
-    <input id="post-input" class="btn post" placeholder='O que você está pensando' type='text'>
-    <button id='post-btn' type='submit' class="feed-btn-postar">Postar</button> 
-  </label>         
-  </form>
-  <section  id='all-posts'></section>
+  container.innerHTML = ` <nav id='' class='navbar'>
+    <button id='logout-btn' class="feed-btn-logout">Logout</button>
+  </nav>
+  <section>
+    <form class='class='postfeed'>
+      <div class='profile'>mmm</div>
+        <label for="page-feed" class='postcont'>
+          <input id="post-input" class="btn post" placeholder='O que você está pensando' type='text'>
+          <button id='post-btn' type='submit' class="feed-btn-postar">Postar</button> 
+        </label>         
+    </form>
+  </section>  
+  <main id='all-posts'> 
   </main>
-  <footer></footer>      
+  <footer>
+  </footer>      
 `;
 
   const logoutBtn = container.querySelector('#logout-btn');
@@ -48,4 +52,3 @@ export const feed = () => {
 
   return container;
 };
-
