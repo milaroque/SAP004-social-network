@@ -3,18 +3,18 @@ import { logout, createPost, timeline } from './data.js'
 export const feed = () => {
   const container = document.createElement('div');
 
-  container.innerHTML = ` <div><nav id=''><button id='logout-btn' class="feed-btn-logout">Logout</button></nav>
+  container.innerHTML = ` <div><nav id='' class='navbar'><button id='logout-btn' class="feed-btn-logout">Logout</button></nav>
+  <div class='profile'>mmm</div>
   <main><form class="container-feed">
-  <label for="page-feed">
-    <input id="post-input" class="btn" placeholder='O que você está pensando' type='text'>
-  </label>
-    <button id='post-btn' type='submit' class="feed-btn-postar">Postar</button>      
+  <form class='class='postfeed'>
+  <label for="page-feed" class='postcont'>
+    <input id="post-input" class="btn post" placeholder='O que você está pensando' type='text'>
+    <button id='post-btn' type='submit' class="feed-btn-postar">Postar</button> 
+  </label>         
   </form>
   <section  id='all-posts'></section>
   </main>
-  <footer></footer>
-    
-    
+  <footer></footer>      
 `;
 
   const logoutBtn = container.querySelector('#logout-btn');
@@ -36,14 +36,16 @@ export const feed = () => {
 
   });
   const template = (arrayPosts) => {
-    allPosts.innerHTML = arrayPosts.map(post => `<div class='templete'>
-    <p>${post.text}</p> <br />
-    <p>${post.email} ${post.date}</p> <br />
-    <button id='like-btn'><img class='likes' src='../../assets/001-paw.png' width='30'>${post.likes}</button>'
-    </div>`).join("")
+    allPosts.innerHTML = arrayPosts.map(post => `<div class='postedfeed'>
+    <div class='post'>${post.text}</div>
+    <div>Postado por: ${post.user}, em ${post.date}</div>
+    <button id='like-btn'><img class='likes' src='../../assets/001-paw.png' width='30'>${post.likes}</button>'</div>
+    
+    `).join("")
+
+    
   }
 
   return container;
 };
-
 

@@ -20,21 +20,6 @@ li {
   flex-wrap: wrap;
   margin-top: 20px
 }
-
-.logo, .dcontainer-home{
-  width: 100vw;
-  height: 50vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #F7FCFC;;
-}
-.templete{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-}
 .btn{     
   width: 226px;
   height: 33px;
@@ -43,8 +28,87 @@ li {
   top:15px;
   box-shadow: 0px 2px 4px 0px #CCC;
 }
+.feed-btn-postar{
+  flex-wrap: wrap;
+}
 
-.login-btn{
+.navbar{
+  width: 100vw;
+height: 56px;
+left: -2px;
+top: 0px;
+background: #B4DAD2;
+border: 1px solid #F2F2F2;
+box-sizing: border-box;
+
+}
+.profile{
+width: 100vw;
+height: 84px;
+left: 0px;
+top: 56px;
+}
+.post {
+width: 80vw;
+height: 104px;
+top: 16px;
+background: rgba(141, 168, 186, 0.68);
+border-radius: 16px;
+display: flex;
+align-items: center;
+justify-content: center;
+flex-wrap: wrap;
+}
+.postcont{
+  width: 90vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  height: 155px;
+  top: 140px;
+  background: rgba(242, 242, 242, 0.54);
+  border: 1px solid #F2F2F2;
+  box-sizing: border-box;
+  border-radius: 21px;
+}
+.postedfeed{
+  width: 100vw;
+height: 50vh;
+display: flex;
+align-items: center;
+justify-content: center;
+flex-wrap: wrap;
+}
+.logo, .dcontainer-home, .dcontainer-home2,.container-feed{
+  width: 100vw;
+  height: 50vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #F7FCFC;
+}
+.templete{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.dcontainer-home2{
+  flex-wrap: wrap;
+  top:15px;
+}
+
+
+.list{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 20px
+}
+
+.login-btn, .register-btn{
   list-style-type: none;
   width: 108px;
   height: 26px;
@@ -63,6 +127,7 @@ li {
   justify-content: center;
   margin-bottom: 42px;
 }
+
 
 .img-logo{
   height: 235px;
