@@ -12,9 +12,11 @@ export const logout = () => {
 
 export const createPost = (text) => {
   const name = firebase.auth().currentUser.displayName;
+  const userId = firebase.auth().currentUser.uid;
   const posts = {
     text: text,
     user: name,
+    user_uid: userId,
     likes: 0,
     comments: [],
     date: new Date().toLocaleString('pt-BR'),
@@ -51,14 +53,17 @@ export const deletePost = (id) => {
 }
 
 export const likePost = (id) => {
-  var likesPost = firebase.firestore().collection('post').doc(id);
+  let likesPost = firebase.firestore().collection('post').doc(id);
   likesPost.update({
     likes: firebase.firestore.FieldValue.increment(1)
   });
+}
+
+export const saveEditedPost = (id, text) => {
+return firebase.firestore().collection("post").doc(id).update({
+    text: text.value,
+})
 };
 
-export const saveEditedPost = (id,text) => {
-  return firebase.firestore().collection("post").doc(id).update({
-      text: text.value
-  })
-};
+
+

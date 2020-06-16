@@ -32,10 +32,14 @@ body {
   border-radius: 18px;
   background: #D0D6C1;
   top:15px;
-  
+  text-align: center;
 }
 .feed-btn-postar{
-  flex-wrap: wrap;
+  display: flex;
+  font-family: 'Pacifico', cursive;
+  font-size: 10px;
+  color: #E79A9A;
+  border-style: double;
 }
 .navbar{
 width: 100vw;
@@ -47,7 +51,7 @@ position: fixed;
 z-index: 10;
 display: flex;
 flex-wrap: wrap;
-box-shadow: 0px 3px 6px 0px #B4DAD2;;
+
 
 }
 .profile{
@@ -59,13 +63,14 @@ margin-top: 57px;
 .post {
 width: 80vw;
 height: 104px;
-top: 16px;
+margin:auto;
 background: rgba(141, 168, 186, 0.68);
 border-radius: 16px;
+border:none;
 display: flex;
 align-items: center;
 justify-content: center;
-flex-wrap: wrap;
+margin-top:11px;
 }
 .postcont{
   margin: auto;
@@ -82,12 +87,17 @@ flex-wrap: wrap;
   border-radius: 21px;
 }
 .postedfeed{
-  width: 100vw;
+  width: 90vw;
+  margin:auto;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
   margin-top: 20px;
+  border: 1px solid #C4C4C4;
+  border-radius: 21px;
+  background: rgba(242, 242, 242, 0.54);
+  height: 175px;
 }
 
 .dcontainer-home{
@@ -126,12 +136,6 @@ flex-wrap: wrap;
   display: flex;
   justify-content: center;
   align-items: center;
-}
-.templete{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
 }
 .list-home{
   display: flex;
@@ -197,4 +201,12 @@ height: 40px;
 .close, .delet-btn{width: 12px;
   height: 10px;
   border: none;
-  background: none;}
+  background: none;
+}
+.posted-for{
+  font-family: 'Pacifico', cursive;
+}
+.likes-btn{
+  border-style: none;
+  background: none;
+}

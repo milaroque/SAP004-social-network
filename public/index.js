@@ -9,7 +9,7 @@ const main = document.querySelector('#root');
 const routes = {
   home: home(),
   register: register(),
-  feed: feed(timeline),
+  feed: feed()
 };
 
 const validateHash = (hash) => hash === '' ? 'home' : hash.replace('#', '');

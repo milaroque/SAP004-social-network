@@ -3,9 +3,8 @@ import { userLogin, loginGoogle } from './data.js';
 
 export const home = () => {
   const container = document.createElement('div');
-  document.querySelector('body').className ='fundo-home';
-   container.innerHTML = `
-<div class='logo'>
+
+  container.innerHTML = `<div class='logo'>
   <figure>
     <img class='img-logo' src='../../assets/logo-sos.png' >
   </figure>
@@ -22,9 +21,8 @@ export const home = () => {
     <p class='line-none'>Ou entre com:</p>
     <button id='google-btn' class='googleBtn'><img class='google' src='../../assets/004-brands-and-logotypes.png'></button>
     <p class='line-none'>Ainda não tem conta?<a href='#register'> Registre-se!</a></p></li>
-  </fom>
-  </div>
-  `;
+  </form>
+  </div>`;
 
   
   const email = container.querySelector('#email');
