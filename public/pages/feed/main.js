@@ -1,27 +1,28 @@
 import {
-  logout, createPost, timeline, deletePost, likePost,
+  logout, createPost, timeline, deletePost, likePost, saveEditedPost
 } from './data.js';
 
 export const feed = () => {
   const container = document.createElement('div');
 
-  container.innerHTML = `
-  <nav id='' class='navbar'>
-  <button id='logout-btn' class="feed-btn-logout">Logout</button>
-</nav>
+  container.innerHTML = ` <div class='fundo'>
+  <div class='navbar'><button id='logout-btn' class="feed-btn-logout"><img class='exit' src='../../assets/exit.png'></button>
+  <figure class='img-nav'><img class='img-nav' src='../../assets/logo-sos.png'></figure> 
+  </div>
 <section>
   <form class='class='postfeed'>
-    <div class='profile'>mmm</div>
+    <div id='profile-template' class='profile'>Perfil</div>
       <label for="page-feed" class='postcont'>
-        <input id="post-input" class="btn post" placeholder='O que você está pensando' type='text'>
-        <button id='post-btn' type='submit' class="feed-btn-postar">Postar</button> 
-      </label>         
+        <input id="post-input" class="btn post" placeholder=' O que você está pensando' type='text'>
+        <button id='post-btn' type='submit' class="feed-btn-postar">Postar</button>
+      </label>
   </form>
-</section>  
-<main id='all-posts'> 
+</section>
+<main id='all-posts'>
 </main>
 <footer>
 </footer>
+</div>
 `;
 
   const logoutBtn = container.querySelector('#logout-btn');
@@ -42,35 +43,57 @@ export const feed = () => {
     inputPost.value = '';
   });
 
-  const templatePost = (arrayPosts) => {
+ const templatePost = (arrayPosts) => {
     allPosts.innerHTML = '';
     arrayPosts.map(post => {
       const template = document.createElement('div');
       template.innerHTML = `
       <div class='postedfeed'>
-    <div class='post'>${post.text}</div>
-    <div>Postado por: ${post.user}, em ${post.date}</div>
-    <button id='like-btn' data-id= ${post.id}><img class='likes' src='../../assets/001-paw.png' width='30'>${post.likes}</button>'</div>
-    <button id='delete-btn' data-id= ${post.id}>Deletar</button>
+      <p>Postado por: ${post.user}, em ${post.date}</p>
+      <button id='delete-btn' class ='delet-btn'data-id= ${post.id}><img class='close' src='../../assets/close.png'></button>
+      <textarea id='text-area' data-id=${post.id} class='post' disabled>${post.text}</textarea>
+    <button id='like-btn' data-id= ${post.id}>
+    <img class='likes' src='../../assets/001-paw.png' width='20'>${post.likes}</button>'
+    <button id='edit-btn' data-id= ${post.id}>Editar</button>
+    <button id='save-btn' data-id= ${post.id}>Salvar</button>
+    </div>
     `
-      allPosts.appendChild(template);
+    allPosts.appendChild(template);
 
       const deleteBtn = template.querySelector('#delete-btn');
       deleteBtn.addEventListener('click', (event) => {
         event.preventDefault();
         deletePost(deleteBtn.dataset.id);
       })
+
       const likeBtn = template.querySelector("#like-btn");
       likeBtn.addEventListener('click', (event) => {
         event.preventDefault();
         likePost(likeBtn.dataset.id);
-
-      
       })
-      
-    }).join('');
 
+      const editPost = () => {
+        const textArea = template.querySelector('#text-area');
+        textArea.disabled = false;
+        textArea.style.color = 'black';
+      };
+
+      const editBtn = template.querySelector("#edit-btn")
+      editBtn.addEventListener('click', (event) => {
+        event.preventDefault();
+        editPost(editBtn.dataset.id)
+      })
+
+      const saveBtn = template.querySelector('#save-btn');
+      saveBtn.addEventListener('click', (event) => {
+        event.preventDefault();
+        const textArea = template.querySelector('#text-area');
+        textArea.disabled = true;
+        saveEditedPost(saveBtn.dataset.id, textArea)
+      })
+ 
+  }).join('');
   };
-
+  timeline(templatePost, likePost, deletePost, saveEditedPost)
   return container;
 };
