@@ -11,15 +11,14 @@ export const logout = () => {
 }
 
 export const createPost = (text) => {
-  const name = firebase.auth().currentUser.displayName;
-  const userId = firebase.auth().currentUser.uid;
   const posts = {
     text: text,
-    user: name,
-    user_uid: userId,
+    user: firebase.auth().currentUser.displayName,
+    userUid: firebase.auth().currentUser.uid,
     likes: 0,
     comments: [],
     date: new Date().toLocaleString('pt-BR'),
+    /* privacy: value, */
   };
 
   firebase.firestore()
@@ -34,6 +33,7 @@ export const createPost = (text) => {
 
 export const timeline = (callback) => {
   firebase.firestore().collection('post')
+ /*  .where('privacy', '==', 'public') */
     .orderBy('date', 'desc')
     .onSnapshot(function (querySnapshot) {
       const posts = [];
@@ -62,6 +62,7 @@ export const likePost = (id) => {
 export const saveEditedPost = (id, text) => {
 return firebase.firestore().collection("post").doc(id).update({
     text: text.value,
+    /* privacy: privacy.value, */
 })
 };
 

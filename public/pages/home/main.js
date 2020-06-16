@@ -24,6 +24,7 @@ export const home = () => {
   </form>
   </div>`;
 
+  
   const email = container.querySelector('#email');
   const password = container.querySelector('#password');
   const loginBtn = container.querySelector('#login-btn');
