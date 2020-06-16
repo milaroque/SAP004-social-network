@@ -10,13 +10,21 @@ body {
   font-weight: normal;
   font-size: 12px;
   line-height: 14px;
+  
 }
-li {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  margin-top: 20px
+
+.fundo{
+  background-image: url(assets/fundo.png);
+}
+
+.line-none{
+  font-family: 'Pacifico', cursive;
+  font-size: 14px;
+  margin-top: 37px;
+}
+.line-none a:link{
+  outline: none;
+  text-decoration: none;
 }
 .btn{     
   width: 226px;
@@ -24,7 +32,7 @@ li {
   border-radius: 18px;
   background: #D0D6C1;
   top:15px;
-  box-shadow: 0px 2px 4px 0px #CCC;
+  
 }
 .feed-btn-postar{
   flex-wrap: wrap;
@@ -34,16 +42,19 @@ width: 100vw;
 height: 56px;
 top: 0px;
 background: #B4DAD2;
-border: 1px solid #F2F2F2;
 box-sizing: border-box;
 position: fixed;
 z-index: 10;
+display: flex;
+flex-wrap: wrap;
+box-shadow: 0px 3px 6px 0px #B4DAD2;;
+
 }
 .profile{
-border: 5px solid black;
+border: 1px solid black;
 width: 100vw;
 height: 84px;
-margin-top: 56px;
+margin-top: 57px;
 }
 .post {
 width: 80vw;
@@ -57,6 +68,7 @@ justify-content: center;
 flex-wrap: wrap;
 }
 .postcont{
+  margin: auto;
   width: 90vw;
   display: flex;
   align-items: center;
@@ -71,19 +83,49 @@ flex-wrap: wrap;
 }
 .postedfeed{
   width: 100vw;
-height: 50vh;
-display: flex;
-align-items: center;
-justify-content: center;
-flex-wrap: wrap;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 20px;
 }
-.logo, .dcontainer-home, .dcontainer-home2,.container-feed{
+
+.dcontainer-home{
   width: 100vw;
-  height: 50vh;
+  height: 60vh;
+  text-align: center;
   display: flex;
   align-items: center;
   justify-content: center;
   background: #F7FCFC;
+}
+.dcontainer-home2,.container-feed{
+  width: 100vw;  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #F7FCFC;
+}
+
+.img-logo{
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+  align-items: center;
+  margin-top: 55px;
+}
+.dcontainer-home2{
+  flex-wrap: wrap;
+  top:15px;
+  height: 50vh;
+  text-align: center;
+}
+.logo{
+  height: 40vh;
+  background: #F7FCFC;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .templete{
   display: flex;
@@ -91,11 +133,7 @@ flex-wrap: wrap;
   justify-content: center;
   flex-wrap: wrap;
 }
-.dcontainer-home2{
-  flex-wrap: wrap;
-  top:15px;
-}
-.list{
+.list-home{
   display: flex;
   align-items: center;
   justify-content: center;
@@ -109,21 +147,54 @@ flex-wrap: wrap;
   background: #D0D6C1;
   border-radius: 18px;
   cursor: pointer;
+  margin-top: 20px;
 }
-.google{
+
+.googleBtn, .google{
   cursor: pointer;
   width: 40px;
- border: none;
- border-radius: 35px;
+  border-radius: 100px; 
+  border: none;
+  margin-top: 15px;
+  background: #F7FCFC;
 }
-.list-home{
+
+.list{
+  display: flex;
+  align-items: center;
   justify-content: center;
-  margin-bottom: 42px;
+  flex-wrap: wrap;
+  margin-top: 20px
+  ;
 }
-.img-logo{
-  height: 235px;
-  width: 277px;
-  object-fit: cover;
-  object-position: left bottom;
-  margin-top: 60px
+.logout-btn{
+  align-items: center;    
+    display: flex;
+    font-style: normal;    
+    font-weight: 700;
+    justify-content: flex-start;
+    width: 35px;
+    height: 26px;
 }
+.img-nav{
+  display: flex;
+  width: 123px;
+    height: 65px;
+  margin: auto;
+}
+.feed-btn-logout{
+  display: flex;
+  justify-content: flex-start;
+  width: 35px;
+  height: 26px;
+  border: none;
+  background: none;
+}
+.exit{
+  width: 40px;
+height: 40px;
+}
+.close, .delet-btn{width: 12px;
+  height: 10px;
+  border: none;
+  background: none;}

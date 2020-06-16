@@ -55,4 +55,10 @@ export const likePost = (id) => {
   likesPost.update({
     likes: firebase.firestore.FieldValue.increment(1)
   });
-}
+};
+
+export const saveEditedPost = (id,text) => {
+  return firebase.firestore().collection("post").doc(id).update({
+      text: text.value
+  })
+};
