@@ -3,7 +3,7 @@ import {
 } from './data.js';
 export const feed = () => {
   const container = document.createElement('div');
-  container.className='fundo'
+  container.classList.add('fundo')
   container.innerHTML = ` <div class='fundo'>
   <div class='navbar'><button id='logout-btn' class="feed-btn-logout"><img class='exit' src='../../assets/exit.png'></button>
   <figure class='img-nav'><img class='img-nav' src='../../assets/logo-sos.png'></figure> 
@@ -44,7 +44,7 @@ export const feed = () => {
       const template = document.createElement('div');
       template.innerHTML = `
       <div class='postedfeed'>
-      <p>Postado por: ${post.user}, em ${post.date}</p>
+      <p>${post.user}, em ${post.date}</p>
       <button id='delete-btn' class ='delet-btn'data-id= ${post.id}><img class='close' src='../../assets/close.png'></button>
       <textarea id='text-area' data-id=${post.id} class='post' disabled>${post.text}</textarea>    
       <button id='like-btn' data-id= ${post.id}>
