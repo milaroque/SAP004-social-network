@@ -9,7 +9,9 @@ export const logout = () => {
       // An error happened.
     });
 }
-
+const getUrlPhoto = () => { //não exportei esta função pois ela será utilizada apenas neste escopo.
+  return firebase.auth().currentUser.photoURL; //Esqueci de dar o carai do return antes do Firebase
+}
 export const createPost = (text, privacy) => {
   const posts = {
     text,
@@ -97,6 +99,10 @@ export const loadComments = (callback) => {
       callback(comment);
     });
 }
+
+export const profile = (user) =>{
+  user: firebase.auth().currentUser.displayName
+};
 
 
 

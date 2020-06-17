@@ -33,6 +33,23 @@ body {
   top:15px;
   text-align: center;
 }
+.btn-privacy{
+  width: 17px;
+  height: 17px;
+}
+.bnt-space{
+  display: flex;
+  width: 90vw;
+}
+.comment-btn, .save, .likes-btn, .size{
+  width: 17px;
+  height: 17px;
+  border: none;
+  background: none;
+  display: flex;
+  justify-content: space-around;
+  margin-left: 15px;
+}
 .feed-btn-postar{
   display: flex;
   font-family: 'Pacifico', cursive;
@@ -66,7 +83,7 @@ body {
 }
 .post {
   width: 80vw;
-  height: 104px;
+  height: 95px;
   margin:auto;
   background: rgba(141, 168, 186, 0.68);
   border-radius: 16px;
@@ -75,6 +92,7 @@ body {
   align-items: center;
   justify-content: center;
   margin-top:11px;
+  text-align: center;
 }
 .postcont{
   margin: auto;
@@ -101,9 +119,11 @@ body {
   border: 1px solid #C4C4C4;
   border-radius: 21px;
   background: rgba(242, 242, 242, 0.54);
-  height: 175px;
+  height: 150px;
 }
-
+.privacy{
+  display: grid;
+}
 .dcontainer-home{
   width: 100vw;
   height: 60vh;
@@ -208,7 +228,9 @@ height: 40px;
   background: none;
 }
 .posted-for{
-  font-family: 'Pacifico', cursive;
+  display: flex;
+  width: 80vw;
+  margin-bottom: -15px;
 }
 .likes-btn{
   border-style: none;
