@@ -1,7 +1,5 @@
 import {
   logout, createPost, timeline, deletePost, likePost, saveEditedPost,profile,} from './data.js';
- 
-
 export const feed = () => {
   const container = document.createElement('div');
 container.innerHTML = ` <div class='fundo'>
@@ -27,6 +25,7 @@ container.innerHTML = ` <div class='fundo'>
 </footer>
 </div>
 `
+}
 
   const logoutBtn = container.querySelector('#logout-btn');
   const postBtn = container.querySelector('#post-btn');
