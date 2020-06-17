@@ -8,8 +8,8 @@ container.innerHTML = ` <div class='fundo'>
   <figure class='img-nav'><img class='img-nav' src='../../assets/logo-sos.png'></figure> 
   </div>
 <section>
-  <form class='class='postfeed'>
-    <div id='profile-template' class='profile'><h1>Nome</h1></div>
+  <form  id='form' class='postfeed'>
+    <div class='profile'><h1>Nome</h1></div>
       <label for="page-feed" class='postcont'>
       <div id='privacy'>
       <input type="radio" name="privacy" id="public" class="btn-privacy" value="public" checked><img class='public' src='../../assets/public.png' width='30'>
@@ -30,13 +30,14 @@ container.innerHTML = ` <div class='fundo'>
   const postBtn = container.querySelector('#post-btn');
   const allPosts = container.querySelector('#all-posts');
   const inputPost = container.querySelector('#post-input');
+  const form = container.querySelector('#form');
   logoutBtn.addEventListener('click', (event) => {
     event.preventDefault();
     logout();
   });
   postBtn.addEventListener('click', (event) => {
-    event.preventDefault();
-    createPost(inputPost.value);
+    event.preventDefault(); console.log(form.privacy.value)
+    createPost(inputPost.value,form.privacy.value);
     allPosts.innerHTML = '';
     timeline(templatePost);
     inputPost.value = '';

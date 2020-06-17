@@ -10,15 +10,15 @@ export const logout = () => {
     });
 }
 
-export const createPost = (text) => {
+export const createPost = (text, privacy) => {
   const posts = {
-    text: text,
+    text,
     user: firebase.auth().currentUser.displayName,
     userUid: firebase.auth().currentUser.uid,
     likes: 0,
     comments: 0,
     date: new Date().toLocaleString('pt-BR'),
-    /* privacy: value, */
+    privacy
   };
 
   firebase.firestore()
@@ -37,7 +37,9 @@ export const timeline = (callback) => {
     .onSnapshot(function (querySnapshot) {
       const posts = [];
       querySnapshot.forEach(function (doc) {
-        posts.push({ id: doc.id, userUid: doc.userUid, ...doc.data() });
+        if (doc.data().privacy === 'public' || doc.data().userUid === firebase.auth().currentUser.uid) { 
+          posts.push({ id: doc.id, userUid: doc.userUid, ...doc.data()})
+        };
       });
       callback(posts);
     });
