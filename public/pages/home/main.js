@@ -19,7 +19,7 @@ export const home = () => {
   </label>
   <button id='login-btn' class='login-btn'>Login</button>
     <p class='line-none'>Ou entre com:</p>
-    <button id='google-btn' class='googleBtn'><img class='google' src='../../assets/004-brands-and-logotypes.png'></button>
+    <button id='google-btn' class='googleBtn'><img class='google' src='../../assets/google.png'></button>
     <p class='line-none'>Ainda não tem conta?<a href='#register'> Registre-se!</a></p></li>
   </form>
   </div>`;

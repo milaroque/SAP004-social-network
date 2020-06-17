@@ -9,7 +9,6 @@ body {
   font-style: normal;
   font-weight: normal;
   font-size: 12px;
-  line-height: 14px;
   
 }
 
@@ -42,35 +41,40 @@ body {
   border-style: double;
 }
 .navbar{
-width: 100vw;
-height: 56px;
-top: 0px;
-background: #B4DAD2;
-box-sizing: border-box;
-position: fixed;
-z-index: 10;
-display: flex;
-flex-wrap: wrap;
+  width: 100vw;
+  height: 56px;
+  top: 0px;
+  background: #B4DAD2;
+  box-sizing: border-box;
+  position: fixed;
+  z-index: 10;
+  display: flex;
+  flex-wrap: wrap;
 
 
 }
 .profile{
-border: 1px solid black;
-width: 100vw;
-height: 84px;
-margin-top: 57px;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  
+  border: 1px solid black;
+  width: 100vw;
+  height: 84px;
+  margin-top: 57px;
 }
 .post {
-width: 80vw;
-height: 104px;
-margin:auto;
-background: rgba(141, 168, 186, 0.68);
-border-radius: 16px;
-border:none;
-display: flex;
-align-items: center;
-justify-content: center;
-margin-top:11px;
+  width: 80vw;
+  height: 104px;
+  margin:auto;
+  background: rgba(141, 168, 186, 0.68);
+  border-radius: 16px;
+  border:none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top:11px;
 }
 .postcont{
   margin: auto;
@@ -183,7 +187,7 @@ margin-top:11px;
 .img-nav{
   display: flex;
   width: 123px;
-    height: 65px;
+  height: 65px;
   margin: auto;
 }
 .feed-btn-logout{
