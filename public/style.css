@@ -12,6 +12,7 @@ body {
 }
 .fundo{
   background-image: url(assets/fundo.png);
+  background-size: cover;
 }
 .line-none{
   font-family: 'Pacifico', cursive;
@@ -73,6 +74,13 @@ body {
   margin-top: 56px;  
   width: 100vw;  
   margin-top: 56px;
+}
+
+.img-perfil > img {
+  width: 60px;
+  border-radius: 100px;
+  display: flex;
+  justify-content: left;
 }
 .post {
   width: 80vw;
@@ -137,7 +145,7 @@ body {
 .img-logo{
   display: flex;
   justify-content: center;
-  width: 100vw;
+  width: 277px;
   align-items: center;
   margin-top: 55px;
 }
