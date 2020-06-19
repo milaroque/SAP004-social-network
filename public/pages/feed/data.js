@@ -72,14 +72,16 @@ export const createComment = (text, id) => {
     });
 }
 
-export const readComment = (id, func, allComments) => {
+export const readComment = (id, callback) => {
   firebase.firestore().collection('post').doc(id).collection('comments')
     .orderBy('date', 'desc')
     .onSnapshot(function (querySnapshot) {
-    querySnapshot.forEach(docs => {
-      console.log(docs.data())
-      func(docs, allComments)
-    }) 
+      const comment = [];
+      querySnapshot.forEach(function (doc) {
+      comment.push({ id: doc.id, userUid: doc.userUid, ...doc.data()})
+      
+      });
+      callback(comment);
     });
 }
 
