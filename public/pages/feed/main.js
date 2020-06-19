@@ -4,7 +4,7 @@ import {
 export const feed = () => {
   const container = document.createElement('div');
   container.innerHTML = ` <div class='fundo'>
-<div class='navbar'>
+<div class='navbar'> 
   <button id='logout-btn' class='feed-btn-logout'>
     <img class='exit' src='../../assets/exit.png'>
   </button>
