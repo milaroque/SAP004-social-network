@@ -74,8 +74,6 @@ fieldset{
   z-index: 10;
   display: flex;
   flex-wrap: wrap;
-
-
 }
 .profile{
   display: flex;
@@ -85,6 +83,13 @@ fieldset{
   margin-top: 56px;  
   width: 100vw;  
   margin-top: 56px;
+}
+
+.img-perfil > img {
+  width: 60px;
+  border-radius: 100px;
+  display: flex;
+  justify-content: left;
 }
 .post {
   width: 80vw;
@@ -146,7 +151,6 @@ fieldset{
   justify-content: center;
   background: #F7FCFC;
 }
-
 .img-logo{
   display: flex;
   justify-content: center;
@@ -183,7 +187,6 @@ fieldset{
   cursor: pointer;
   margin-top: 20px;
 }
-
 .googleBtn, .google{
   cursor: pointer;
   width: 40px;
@@ -192,7 +195,6 @@ fieldset{
   margin-top: 15px;
   background: #F7FCFC;
 }
-
 .list{
   display: flex;
   align-items: center;
