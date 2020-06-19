@@ -50,10 +50,12 @@ body {
 }
 .feed-btn-postar{
   display: flex;
-  font-family: 'Pacifico', cursive;
-  font-size: 10px;
-  color: #E79A9A;
-  border-style: double;
+  width: 50px;
+  font-family: roboto;
+  font-size: 12px;
+  border-radius: 20px;
+  border: solid 1px;
+  justify-content: center;
 }
 .navbar{
   width: 100vw;
@@ -126,6 +128,22 @@ body {
 .privacy{
   display: grid;
 }
+
+.commented {
+  margin: 50px;
+  text-align: center;
+  border: solid 1px;
+  background-color: whitesmoke;
+  border-radius: 50px;
+}
+
+.commented2 {
+  margin: 50px;
+  text-align: center;
+  border: none;
+  background-color: rgba(245, 245, 245, 0.637);
+  border-radius: 50px;
+}
 .dcontainer-home{
   width: 100vw;
   height: 60vh;
@@ -152,7 +170,7 @@ body {
 .dcontainer-home2{
   flex-wrap: wrap;
   top:15px;
-  height: 50vh;
+  height: 60vh;
   text-align: center;
 }
 .logo{
@@ -243,4 +261,51 @@ height: 40px;
 .personal-info{
   border: none;
   background: none;
+}
+.img-pets{
+  display: none;
+  width: 393px;
+  height: 197px;
+}
+@media(min-width:1200px){
+  .main-div{
+    display: flex;
+  }
+  .logo{
+    height: 100vh;
+    width: 50vw;
+    background: #F7FCFC;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+ 
+  .dcontainer-home, .dcontainer-home2{
+    width: 50vw;
+    height: 100vh;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #F7FCFC;
+  }
+  .dcontainer-home2{
+    width: 50vw;
+    height: 100vh;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #F7FCFC;
+  }
+  .img-pets{
+    display: flex;
+    width: 393px;
+    height: 197px;
+  }
+  .img-logo {
+    width: 555px;
+    height: 410px;
+    margin-top: 0;
+  }
 }

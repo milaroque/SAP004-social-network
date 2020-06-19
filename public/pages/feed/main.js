@@ -38,7 +38,7 @@ export const feed = () => {
       <img class='private' src='../../assets/private.png' width='30'>
     </div>  
     <input id='post-input' class='btn post' placeholder=' O que você está pensando' type='text'>
-    <button id='post-btn' type='submit' class='feed-btn-postar'>Compartilhar</button>
+    <button id='post-btn' type='submit' class='feed-btn-postar'>Postar</button>
   </fieldset>
 </form>
 </section>
@@ -102,7 +102,7 @@ function divImagem (divImg, url) {
       <button class='commentBtn' type='submit' class=''>Comentar</button>
       </div>
       </div>
-      <div id='commented'>
+      <div id='commented' class='commented2'>
       </div>`
 
       allPosts.appendChild(template);
@@ -117,11 +117,16 @@ function divImagem (divImg, url) {
         allComments.innerHTML = '';
         arrayComments.map(comment => {
           const containerComment = document.createElement('div')
-        containerComment.innerHTML = `<textarea disabled>${comment.text}</textarea>`
+        containerComment.innerHTML = `
+        <div class='commented'>
+        <button id='delete-btn' class ='delet-btn'data-id= ${comment.id}><img class='close' src='../../assets/close.png'></button>
+        <textarea id='text-area' data-id=${comment.id} disabled>${comment.text}</textarea>
+        <button id='edit-btn' class='edit size' data-id= ${comment.id}><img class='save size' src='../../assets/edit.png'></button>
+      <button id='save-btn' class='save size' data-id= ${comment.id}><img class='save size' src='../../assets/tick.png'></button>
+        </div>
+        `
         allComments.appendChild(containerComment)
         })
-       
-        
       }
 
       commentButton.addEventListener('click', (event) => {
