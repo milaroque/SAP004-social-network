@@ -109,26 +109,33 @@ function divImagem (divImg, url) {
 
       const commentBtn = template.querySelector('#comment-btn');
       const privacyForm = template.querySelector('#privacy');
-      const commentButton = template.getElementsByClassName('commentBtn');
+      const commentButton = template.querySelector('.commentBtn');
       const allComments = template.querySelector('#commented')
       const inputComments = template.querySelector('.comment-input');
 
-      template.querySelector(".commentBtn").addEventListener('click', ()=> {
-        createComment(inputComments.value, post.id);
-        console.log(post.id, inputComments.value)})
+      const templateComment = (arrayComments) => {
+        allComments.innerHTML = '';
+        arrayComments.map(comment => {
+          const containerComment = document.createElement('div')
+        containerComment.innerHTML = `<textarea disabled>${comment.text}</textarea>`
+        allComments.appendChild(containerComment)
+        })
+       
         
-        readComment(post.id, templateComment, template)
+      }
+
+      commentButton.addEventListener('click', (event) => {
+        event.preventDefault(); 
+        createComment(inputComments.value, post.id);
+        allComments.innerHTML = '';
+        readComment(post.id, templateComment);
+        inputComments.value = '';
+      });
       
       
       commentBtn.addEventListener('click', () => {
         template.querySelector('.comments-area').style.display = 'flex';
       })
-
-      const templateComment = (doc, template) => {
-        const containerCom = `<p>${doc.data().text}</p>`
-        const allComments = template.querySelector('#commented')
-        allComments.appendChild(containerCom)
-      }
 
       const likeBtn = template.querySelector("#like-btn");
       const deleteBtn = template.querySelector('#delete-btn');

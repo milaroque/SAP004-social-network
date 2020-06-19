@@ -2,7 +2,7 @@ import { registerLogin } from './data.js';
 
 export const register = () => {
   const container = document.createElement('div');
-
+  container.classList.add('main-divFeed')
   container.innerHTML = `
   <div class='logo'>
     <figure class='image'>
