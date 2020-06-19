@@ -9,13 +9,20 @@ body {
   font-style: normal;
   font-weight: normal;
   font-size: 12px;
-  
+  background-image: url(assets/fundo.png)
 }
-
-.fundo{
-  background-image: url(assets/fundo.png);
+fieldset{
+  border:none;
 }
-
+.main-div {
+  height: 100vh;
+  width: 100vw;
+}
+.main-divFeed{
+  height: 100vh;
+  width: 100vw;
+  background-image: url(assets/fundo.png)
+}
 .line-none{
   font-family: 'Pacifico', cursive;
   font-size: 14px;
@@ -75,11 +82,9 @@ body {
   text-align: center;
   justify-content: center;
   align-items: center;
-  
-  border: 1px solid black;
-  width: 100vw;
-  height: 84px;
-  margin-top: 57px;
+  margin-top: 56px;  
+  width: 100vw;  
+  margin-top: 56px;
 }
 .post {
   width: 80vw;
@@ -107,6 +112,7 @@ body {
   border: 1px solid #F2F2F2;
   box-sizing: border-box;
   border-radius: 21px;
+  margin-top: 10px;
 }
 .postedfeed{
   width: 90vw;
@@ -144,14 +150,14 @@ body {
 .img-logo{
   display: flex;
   justify-content: center;
-  width: 100vw;
+  width: 277px;
   align-items: center;
   margin-top: 55px;
 }
 .dcontainer-home2{
   flex-wrap: wrap;
   top:15px;
-  height: 50vh;
+  height: 60vh;
   text-align: center;
 }
 .logo{
@@ -235,4 +241,44 @@ height: 40px;
 .likes-btn{
   border-style: none;
   background: none;
+}
+.textarea-perfil{
+  display: flex;
+  background: none;
+  border:none;
+}
+.personal-info{
+  border: none;
+  background: none;
+}
+@media(min-width:1200px){
+  .main-div{
+    display: flex;
+  }
+  .logo{
+    height: 100vh;
+    width: 50vw;
+    background: #F7FCFC;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .dcontainer-home, .dcontainer-home2{
+    width: 50vw;
+    height: 100vh;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #F7FCFC;
+  }
+  .dcontainer-home2{
+    width: 50vw;
+    height: 100vh;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #F7FCFC;
+  }
 }

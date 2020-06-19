@@ -1,3 +1,4 @@
+// Aqui serão exportadas as funções que irão ser usadas
 export const userLogin = (email, password) => {
   firebase.auth()
     .signInWithEmailAndPassword(email, password)
@@ -16,7 +17,6 @@ export const userLogin = (email, password) => {
       // ...
     }); email - password.html;
 };
-
 export function loginGoogle() {
   const provider = new firebase.auth.GoogleAuthProvider();
   provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
@@ -26,18 +26,5 @@ export function loginGoogle() {
       const name = firebase.auth().currentUser.displayName;
       alert(`Olá, ${name}!`);
       window.location.hash = '#feed';
-      const token = result.credential.accessToken;
-      // The signed-in user info.
-      const user = result.user;
-      // ...
-    }).catch(function (error) {
-      // Handle Errors here.
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      // The email of the user's account used.
-      const email = error.email;
-      // The firebase.auth.AuthCredential type that was used.
-      const credential = error.credential;
-      // ...
-    });
+    })
 }

@@ -1,23 +1,41 @@
-import {
-  logout, createPost, timeline, deletePost, likePost, saveEditedPost,profile,} from './data.js';
+import {logout, createPost, timeline, deletePost, likePost, saveEditedPost} from './data.js';
+
 export const feed = () => {
   const container = document.createElement('div');
+  container.classList.add('main-divFeed')
 container.innerHTML = ` <div class='fundo'>
-  <div class='navbar'><button id='logout-btn' class="feed-btn-logout"><img class='exit' src='../../assets/exit.png'></button>
-  <figure class='img-nav'><img class='img-nav' src='../../assets/logo-sos.png'></figure> 
-  </div>
-<section>
-  <form  id='form' class='postfeed'>
-    <div class='profile'><h1 id='name'>Nome</h1></div>
-      <label for="page-feed" class='postcont'>
-      <div id='privacy'>
-      <input type="radio" name="privacy" id="public" class="btn-privacy" value="public" checked><img class='public btn-privacy' src='../../assets/public.png'>
-      <input type="radio" name="privacy" id="private" class="btn-privacy" value="private" checked><img class='private btn-privacy' src='../../assets/private.png'>
-      </div>  
-      <input id="post-input" class="btn post" placeholder=' O que você está pensando' type='text'>
-          <button id='post-btn' type='submit' class="feed-btn-postar">Compartilhar</button>
-      </label>
-  </form>
+<div class='navbar'>
+  <button id='logout-btn' class='feed-btn-logout'>
+    <img class='exit' src='../../assets/exit.png'>
+  </button>
+<figure class='img-nav'>
+  <img class='img-nav' src='../../assets/logo-sos.png'>
+</figure> 
+</div>
+<section class ='profile'>
+<form  id='form' class='postfeed'>
+    <div id='img-perfil'>
+    <input id='foto-perfil' type='file'>
+    </div>
+  </fieldset>
+  <fieldset class="textarea-perfil">
+    <h2><input id='first-name' class='personal-info' type='text' placeholder='Insira seu nome completo'></h2>
+  </fieldset>
+  <fieldset class="textarea-perfil">
+    <img src='../../assets/pin.png'  class='location-perfil size'>
+    <input id='location' class='personal-info' type='text' placeholder='Insira sua localização'>
+  </fieldset>
+  <fieldset class='postcont'>
+    <div id='privacy'>
+      <input type='radio' name='privacy' id='public' class='btn-privacy' value='public' checked>
+      <img class='public' src='../../assets/public.png' width='30'>
+      <input type='radio' name='privacy' id='private' class='btn-privacy' value='private' checked>
+      <img class='private' src='../../assets/private.png' width='30'>
+    </div>  
+    <input id='post-input' class='btn post' placeholder=' O que você está pensando' type='text'>
+    <button id='post-btn' type='submit' class='feed-btn-postar'>Compartilhar</button>
+  </fieldset>
+</form>
 </section>
 <main id='all-posts'>
 </main>
@@ -25,13 +43,16 @@ container.innerHTML = ` <div class='fundo'>
 </footer>
 </div>
 `
-}
+
 
   const logoutBtn = container.querySelector('#logout-btn');
   const postBtn = container.querySelector('#post-btn');
   const allPosts = container.querySelector('#all-posts');
   const inputPost = container.querySelector('#post-input');
   const form = container.querySelector('#form');
+  const inputImg = container.querySelector('#foto-perfil')
+  const divImg = container.querySelector('.img-perfil');
+  
   logoutBtn.addEventListener('click', (event) => {
     event.preventDefault();
     logout();
@@ -59,11 +80,11 @@ container.innerHTML = ` <div class='fundo'>
     <button id='delete-btn' class ='delet-btn'data-id= ${post.id}><img class='close' src='../../assets/close.png'></button>
     <textarea id='text-area' data-id=${post.id} class='post' disabled>${post.text}</textarea>    
     <div class='bnt-space'>
+    <button id='like-btn' class='likes-btn size' data-id= ${post.id}>
+    <img class='likes size' src='../../assets/001-paw.png' width='20'>${post.likes}</button>'
     <button id='comment-btn' class ='comment-btn' data-id= ${post.id}><img class='likes size' src='../../assets/comment.png' width='20'></button> <br>
     <button id='edit-btn' class='edit size' data-id= ${post.id}><img class='save size' src='../../assets/edit.png'></button>
     <button id='save-btn' class='save size' data-id= ${post.id}><img class='save size' src='../../assets/tick.png'></button>
-    <button id='like-btn' class='likes-btn size' data-id= ${post.id}>
-    <img class='likes size' src='../../assets/001-paw.png' width='20'>${post.likes}</button>'
     </div>
     <div class='comments-area' id='all-comments' style="display: none;">
     <textarea>olar</textarea>
@@ -73,6 +94,7 @@ container.innerHTML = ` <div class='fundo'>
     allPosts.appendChild(template);
 
     const commentBtn = template.querySelector('#comment-btn');
+    const privacyForm = template.querySelector('#privacy')
       commentBtn.addEventListener('click', ()=>{
         template.querySelector('.comments-area').style.display='flex';
       })
@@ -112,7 +134,7 @@ container.innerHTML = ` <div class='fundo'>
         event.preventDefault();
         const textArea = template.querySelector('#text-area');
         textArea.disabled = true;        
-        saveEditedPost(saveBtn.dataset.id, textArea)
+        saveEditedPost(saveBtn.dataset.id, textArea, privacyForm.privacy)
       })
     }else {
       editBtn.style.display = 'none';
