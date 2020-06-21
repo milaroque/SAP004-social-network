@@ -33,10 +33,11 @@ export const register = () => {
   const password = container.querySelector('#password');
   const registerBtn = container.querySelector('#register-btn');
   const name = container.querySelector('#name');
+  const location = container.querySelector('#location-register')
 
   registerBtn.addEventListener('click', (event) => {
     event.preventDefault();
-    registerLogin(email.value, password.value, name.value);
+    registerLogin(email.value, password.value, name.value, location.value);
   });
 
   return container;
