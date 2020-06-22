@@ -18,27 +18,26 @@ export const userLogin = (email, password) => {
     }); email - password.html;
 };
 
-export function loginGoogle() {
+export const loginGoogle = () => {
   const provider = new firebase.auth.GoogleAuthProvider();
-  provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
-  firebase.auth()
-    .signInWithPopup(provider)
-    .then(function (result) {
-      const name = firebase.auth().currentUser.displayName;
-      alert(`Olá, ${name}!`);
-      window.location.hash = '#feed';
-      const token = result.credential.accessToken;
-      // The signed-in user info.
-      const user = result.user;
-      // ...
-    }).catch(function (error) {
-      // Handle Errors here.
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      // The email of the user's account used.
-      const email = error.email;
-      // The firebase.auth.AuthCredential type that was used.
-      const credential = error.credential;
-      // ...
-    });
-}
+  firebase.auth().signInWithPopup(provider).then((currentUser) => {
+    firebase.firestore()
+      .collection('users')
+      .where('user_uid', '==', currentUser.user.uid)
+      .get()
+      .then((snap) => {
+        if (snap.size === 0) {
+          const user = {
+            name: currentUser.additionalUserInfo.profile.given_name,
+            emailUser: currentUser.additionalUserInfo.profile.email,
+            photoURL: currentUser.additionalUserInfo.profile.picture,
+            user_uid: currentUser.user.uid,
+          };
+          firebase.firestore().collection('users').add(user);
+          window.location = '#feed';
+        } else {
+          window.location = '#feed';
+        }
+      });
+  });
+};

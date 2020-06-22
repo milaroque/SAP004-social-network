@@ -11,7 +11,7 @@ body {
   font-size: 12px;
 }
 .fundo{
-  background-image: url(assets/fundo.png);
+  /* background-image: url(assets/fundo.png); */
   background-size: cover;
 }
 .line-none{
@@ -268,7 +268,16 @@ height: 40px;
   height: 197px;
 }
 @media(min-width:1200px){
+  body{  
+  background-image: url(assets/fundo.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
   .main-div{
+    display: flex;
+  }
+  .main-divFeed{
     display: flex;
   }
   .logo{
@@ -279,7 +288,6 @@ height: 40px;
     justify-content: center;
     align-items: center;
   }
- 
   .dcontainer-home, .dcontainer-home2{
     width: 50vw;
     height: 100vh;
@@ -301,11 +309,35 @@ height: 40px;
   .img-pets{
     display: flex;
     width: 393px;
-    height: 197px;
+    height: 215px;
   }
-  .img-logo {
-    width: 555px;
+  .img-logo { 
+    width: 625px;
     height: 410px;
     margin-top: 0;
+  }
+  .fundo{
+    display: flex;
+  }
+  .feed{
+    display: flex;
+    width: 50vw;
+    height: 100vh;
+  }
+  .post {
+    width: 50vw;
+  }
+  .postcont{
+    margin: auto;
+    width: 40vw;
+  }
+  .postedfeed{
+    width: 45vw;
+  }
+  .all-posts{
+    display: flex
+  }
+  .profile{
+    width: 50vw;
   }
 }

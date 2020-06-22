@@ -5,37 +5,37 @@ import {
 
 export const feed = () => {
   const container = document.createElement('div');
-  container.innerHTML = ` <div class='fundo'>
-<div class='navbar'>
-  <button id='logout-btn' class='feed-btn-logout'>
-    <img class='exit' src='../../assets/exit.png'>
-  </button>
-<figure class='img-nav'>
-  <img class='img-nav' src='../../assets/logo-sos.png'>
-</figure> 
-</div>
-<section class ='profile'>
-<form  id='form' class='postfeed'>
-  <h2 class='text-description-register' id='register'>Edite seu perfil!</h2>
-  <div id='profile'></div>
-  <fieldset class='postcont'>
+  container.innerHTML = ` 
+  <div class='fundo'>
+  <div class='navbar'>
+    <button id='logout-btn' class='feed-btn-logout'>
+      <img class='exit' src='../../assets/exit.png'>
+    </button>
+  <figure class='img-nav'>
+    <img class='img-nav' src='../../assets/logo-sos.png'>
+  </figure> 
+  </div>
+  <aside class='profile'>
+    <div id='profile'>
+    </div>
+  </aside>
+  <main class ='feed'>
+  <form  id='form' class='postfeed'>
     <div id='privacy'>
-      <input type='radio' name='privacy' id='public' class='btn-privacy' value='public' checked>
-      <img class='public' src='../../assets/public.png' width='30'>
-      <input type='radio' name='privacy' id='private' class='btn-privacy' value='private'>
-      <img class='private' src='../../assets/private.png' width='30'>
-    </div>  
-    <input id='post-input' class='btn post' placeholder=' O que você está pensando' type='text'>
-    <button id='post-btn' type='submit' class='feed-btn-postar'>Postar</button>
-  </fieldset>
-</form>
-</section>
-<main id='all-posts'>
-</main>
-<footer>
-</footer>
-</div>
-`
+        <input type='radio' name='privacy' id='public' class='btn-privacy' value='public' checked>
+        <img class='public' src='../../assets/public.png' width='30'>
+        <input type='radio' name='privacy' id='private' class='btn-privacy' value='private'>
+        <img class='private' src='../../assets/private.png' width='30'>
+      </div>  
+      <fieldset class='postcont'>    
+      <input id='post-input' class='btn post' placeholder=' O que você está pensando' type='text'>
+      <button id='post-btn' type='submit' class='feed-btn-postar'>Postar</button>
+    </fieldset>
+  <main id='all-posts'>
+  </form>
+  </main>
+  </div>
+  `
   const logoutBtn = container.querySelector('#logout-btn');
   const postBtn = container.querySelector('#post-btn');
   const allPosts = container.querySelector('#all-posts');
@@ -44,9 +44,8 @@ export const feed = () => {
   const profile = container.querySelector('#profile');
 
 
-  const templateProfile = (arrayUser) => {
+  const templateProfile = (user) => {
     profile.innerHTML = '';
-    arrayUser.map(user => {
       const userProfile = document.createElement('div');
       userProfile.innerHTML = `
     <fieldset class='textarea-perfil'>
@@ -92,12 +91,12 @@ export const feed = () => {
         textLocation.disabled = true;
         updateProfile(saveEditedProfileBtn.dataset.id, textName, textLocation)
       })
-    })
+    
 
   }
-
+  
   printUser(templateProfile);
-
+  
 
   logoutBtn.addEventListener('click', (event) => {
     event.preventDefault();
@@ -252,7 +251,5 @@ export const feed = () => {
     }).join('');
   };
   timeline(templatePost);
-
-
   return container;
 };

@@ -10,11 +10,12 @@ export const logout = () => {
 export const printUser = (callback) => {
   firebase.firestore().collection('users')
     .onSnapshot(function (querySnapshot) {
-      const user = [];
+      
       querySnapshot.forEach(function (doc) {
-        user.push({ id: doc.id, userUid: doc.userUid, ...doc.data() })
+        if (firebase.auth().currentUser.uid === doc.data().user_uid){
+        callback({ id: doc.id, userUid: doc.userUid, ...doc.data() })
+      }
       });
-      callback(user);
     });
 }
 
@@ -26,14 +27,15 @@ export const updateProfile = (id, name, location) => {
   })
 };
 
-export function printImg (event,id, func, divImg) {
+export function printImg (event, id, func, divImg) {
 let user = firebase.auth().currentUser.uid;
 let arquivo = event.target.files[0];
 let ref = firebase.storage().ref("Usuarios/" + user + "/profile.jpg");
 ref.put(arquivo).then(function(snapshot){
     ref.getDownloadURL().then(function(url){  // Now I can use url
       firebase.firestore().collection("users").doc(id).update({
-          photoURL: url       // <- URL from uploaded photo.
+          photoURL: url    
+          // <- URL from uploaded photo.
         }).then(url => {
               func(divImg, url)
             })

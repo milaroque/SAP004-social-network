@@ -8,7 +8,7 @@ export const registerLogin = (email, password, name, location) => {
       const user = {
         location: location,
         emailUser: email,
-        userUid: firebase.auth().currentUser.uid,
+        user_uid: firebase.auth().currentUser.uid,
         name: name,
       };
       firebase.firestore().collection('users').doc(uid).set(user);
