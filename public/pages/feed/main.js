@@ -119,9 +119,7 @@ function divImagem (divImg, url) {
           const containerComment = document.createElement('div')
         containerComment.innerHTML = `<textarea disabled>${comment.text}</textarea>`
         allComments.appendChild(containerComment)
-        })
-       
-        
+        })        
       }
 
       commentButton.addEventListener('click', (event) => {
