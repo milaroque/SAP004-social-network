@@ -1,75 +1,112 @@
 import {
-  logout, createPost, timeline, deletePost, likePost, saveEditedPost, printImg, createComment, readComment
+  logout, createPost, timeline, deletePost, likePost, saveEditedPost, printImg,
+  createComment, readComment, deleteComments, saveEditedComment, printUser, updateProfile,
 } from './data.js';
+
 export const feed = () => {
   const container = document.createElement('div');
   container.innerHTML = ` <div class='fundo'>
-<div class='navbar'>
-  <button id='logout-btn' class='feed-btn-logout'>
-    <img class='exit' src='../../assets/exit.png'>
-  </button>
-<figure class='img-nav'>
-  <img class='img-nav' src='../../assets/logo-sos.png'>
-</figure> 
-</div>
-<section class ='profile'>
-<form  id='form' class='postfeed'>
-  <h2 class='text-description-register' id='register'>Edite seu perfil!</h2>
-  <fieldset class='textarea-perfil'>
-    <input id='foto-perfil' type='file'>
-    <div class='img-perfil'>
+  <div class='navbar'>
+    <button id='logout-btn' class='feed-btn-logout'>
+      <img class='exit' src='../../assets/exit.png'>
+    </button>
+  <figure class='img-nav'>
+    <img class='img-nav' src='../../assets/logo-sos.png'>
+  </figure> 
+  </div>
+  <aside class='profile'>
+    <div id='profile'>
     </div>
-  </fieldset>
-  <fieldset class="textarea-perfil">
-    <input id='first-name' class='personal-info' type='text' placeholder='Nome'>
-  </fieldset>
-  <fieldset class="textarea-perfil">
-    <input id='last-name' class='personal-info' type='text' placeholder='Sobrenome'>
-  </fieldset>
-  <fieldset class="textarea-perfil">
-    <input id='location' class='personal-info' type='text' placeholder='Localização'>
-    <img class='location-perfil' src=''>   
-  </fieldset>
-  <fieldset class='postcont'>
+  </aside>
+  <main class ='feed'>
+  <form  id='form' class='postfeed'>
     <div id='privacy'>
-      <input type='radio' name='privacy' id='public' class='btn-privacy' value='public' checked>
-      <img class='public' src='../../assets/public.png' width='30'>
-      <input type='radio' name='privacy' id='private' class='btn-privacy' value='private'>
-      <img class='private' src='../../assets/private.png' width='30'>
-    </div>  
-    <input id='post-input' class='btn post' placeholder=' O que você está pensando' type='text'>
-    <button id='post-btn' type='submit' class='feed-btn-postar'>Compartilhar</button>
-  </fieldset>
-</form>
-</section>
-<main id='all-posts'>
-</main>
-<footer>
-</footer>
-</div>
-`
+        <input type='radio' name='privacy' id='public' class='btn-privacy' value='public' checked>
+        <img class='public' src='../../assets/public.png' width='30'>
+        <input type='radio' name='privacy' id='private' class='btn-privacy' value='private'>
+        <img class='private' src='../../assets/private.png' width='30'>
+      </div>  
+      <fieldset class='postcont'>    
+      <input id='post-input' class='btn post' placeholder=' O que você está pensando' type='text'>
+      <button id='post-btn' type='submit' class='feed-btn-postar'>Postar</button>
+    </fieldset>
+  <div id='all-posts'>
+  </div>
+  </form>
+  </main>
+  </div>
+  `  
+
   const logoutBtn = container.querySelector('#logout-btn');
   const postBtn = container.querySelector('#post-btn');
   const allPosts = container.querySelector('#all-posts');
   const inputPost = container.querySelector('#post-input');
   const form = container.querySelector('#form');
-const inputImg = container.querySelector('#foto-perfil');
-const divImg = container.querySelector('.img-perfil');
+  const profile = container.querySelector('#profile');
 
 
-inputImg.onchange = function (event) {
-  printImg(event, divImagem, divImg)
-}
-function divImagem (divImg, url) {
-  return divImg.innerHTML += `<img src ="${url}">`
-}
+  const templateProfile = (arrayUser) => {
+    profile.innerHTML = '';
+    arrayUser.map(user => {
+      const userProfile = document.createElement('div');
+      userProfile.innerHTML = `
+    <fieldset class='textarea-perfil'>
+    <input id='foto-perfil' type='file'>
+    <div class='img-perfil'><img id='img-perfil' data-id=${user.id} src=${user.photoURL}>
+    </div>
+  </fieldset>
+  <fieldset class="textarea-perfil">
+  <div>Nome: <textarea id='first-name' class='personal-info' data-id= ${user.id} type='text' disabled>${user.name}</textarea></div>
+  </fieldset>
+  <fieldset class="textarea-perfil">
+  <div>Localização: <textarea id='location' class='personal-info' type='text' data-id=${user.id} disabled>${user.location}</textarea></div>
+    <img class='location-perfil' src=''>   
+  </fieldset>
+  <button id='edit-btn' class='edit size' data-id= ${user.id}><img class='save size' src='../../assets/edit.png'></button>
+  <button id='save-btn' class='save size' data-id= ${user.id}><img class='save size' src='../../assets/tick.png'></button>
+  `
+      profile.appendChild(userProfile)
+
+      const textName = userProfile.querySelector('#first-name');
+      const textLocation = userProfile.querySelector('#location');
+      const inputImg = userProfile.querySelector('#foto-perfil');
+      const divImg = userProfile.querySelector('#img-perfil');
+      const editProfileBtn = userProfile.querySelector('#edit-btn');
+      const saveEditedProfileBtn = userProfile.querySelector('#save-btn');
+
+      inputImg.onchange = function (event) {
+        printImg(event, user.id, divImagem, divImg)
+      }
+      const divImagem = (divImg, url) => {
+        return divImg.innerHTML += `<img src ="${url}">`
+      }
+
+      editProfileBtn.addEventListener('click', (event) => {
+        event.preventDefault();
+        textName.disabled = false;
+        textLocation.disabled = false;
+        return editProfileBtn.dataset.id
+      })
+      saveEditedProfileBtn.addEventListener('click', (event) => {
+        event.preventDefault();
+        textName.disabled = true;
+        textLocation.disabled = true;
+        updateProfile(saveEditedProfileBtn.dataset.id, textName, textLocation)
+      })
+    })
+
+  }
+
+  printUser(templateProfile);
+
 
   logoutBtn.addEventListener('click', (event) => {
     event.preventDefault();
     logout();
   });
+
   postBtn.addEventListener('click', (event) => {
-    event.preventDefault(); 
+    event.preventDefault();
     createPost(inputPost.value, form.privacy.value);
     allPosts.innerHTML = '';
     timeline(templatePost);
@@ -102,33 +139,76 @@ function divImagem (divImg, url) {
       <button class='commentBtn' type='submit' class=''>Comentar</button>
       </div>
       </div>
-      <div id='commented'>
+      <div id='commented' class='commented2'>
       </div>`
+
+      
 
       allPosts.appendChild(template);
 
       const commentBtn = template.querySelector('#comment-btn');
       const privacyForm = template.querySelector('#privacy');
-      const commentButton = template.getElementsByClassName('commentBtn');
+      const commentButton = template.querySelector('.commentBtn');
       const allComments = template.querySelector('#commented')
       const inputComments = template.querySelector('.comment-input');
 
-      template.querySelector(".commentBtn").addEventListener('click', ()=> {
+      const templateComment = (arrayComments) => {
+        allComments.innerHTML = '';
+        arrayComments.map(comment => {
+          const containerComment = document.createElement('div')
+          containerComment.innerHTML = `
+        <div class='commented'>
+        <button id='delete-comment' class ='delet-btn'data-id= ${comment.id}><img class='close' src='../../assets/close.png'></button>
+        <textarea id='text-area' data-id=${comment.id} disabled>${comment.text}</textarea>
+        <button id='edit-comment' class='edit size' data-id= ${comment.id}><img class='save size' src='../../assets/edit.png'></button>
+      <button id='save-comment' class='save size' data-id= ${comment.id}><img class='save size' src='../../assets/tick.png'></button>
+        </div>
+        `
+          allComments.appendChild(containerComment)
+
+          const deleteComment = containerComment.querySelector('#delete-comment');
+          const editComments = containerComment.querySelector('#edit-comment');
+          const saveComment = containerComment.querySelector('#save-comment');
+
+          deleteComment.addEventListener('click', (event) => {
+            event.preventDefault();
+            deleteComments(post.id, deleteComment.dataset.id);
+          })
+
+          const editComment = () => {
+            const textComment = containerComment.querySelector('#text-area');
+            textComment.disabled = false;
+            textComment.style.color = 'black';
+          };
+
+          editComments.addEventListener('click', (event) => {
+            event.preventDefault();
+            editComment(editComments.dataset.id);
+            saveComment.style.display = 'flex';
+          })
+
+          saveComment.addEventListener('click', (event) => {
+            event.preventDefault();
+            const textComment = containerComment.querySelector('#text-area');
+            textComment.disabled = true;
+            saveEditedComment(post.id, saveComment.dataset.id, textComment)
+          })
+
+        })
+      }
+
+      commentButton.addEventListener('click', (event) => {
+        event.preventDefault();
         createComment(inputComments.value, post.id);
-        console.log(post.id, inputComments.value)})
-        
-        readComment(post.id, templateComment, template)
-      
-      
+        allComments.innerHTML = '';
+        readComment(post.id, templateComment);
+        inputComments.value = '';
+      });
+
+
       commentBtn.addEventListener('click', () => {
         template.querySelector('.comments-area').style.display = 'flex';
       })
-
-      const templateComment = (doc, template) => {
-        const containerCom = `<p>${doc.data().text}</p>`
-        const allComments = template.querySelector('#commented')
-        allComments.appendChild(containerCom)
-      }
 
       const likeBtn = template.querySelector("#like-btn");
       const deleteBtn = template.querySelector('#delete-btn');
@@ -174,6 +254,8 @@ function divImagem (divImg, url) {
       }
     }).join('');
   };
-  timeline(templatePost, likePost, deletePost, saveEditedPost)
+  timeline(templatePost);
+
+
   return container;
 };

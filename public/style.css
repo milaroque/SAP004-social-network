@@ -9,19 +9,11 @@ body {
   font-style: normal;
   font-weight: normal;
   font-size: 12px;
-  background-image: url(assets/fundo.png)
+  background-image: url(assets/fundo.png);
 }
-fieldset{
-  border:none;
-}
-.main-div {
-  height: 100vh;
-  width: 100vw;
-}
-.main-divFeed{
-  height: 100vh;
-  width: 100vw;
-  background-image: url(assets/fundo.png)
+.fundo{
+ 
+  background-size: cover;
 }
 .line-none{
   font-family: 'Pacifico', cursive;
@@ -75,7 +67,7 @@ fieldset{
   display: flex;
   flex-wrap: wrap;
 }
-.profile{
+.feed{
   display: flex;
   text-align: center;
   justify-content: center;
@@ -253,8 +245,19 @@ height: 40px;
   border: none;
   background: none;
 }
+.img-pets{
+  display: none;
+  width: 393px;
+  height: 197px;
+}
 @media(min-width:1200px){
+  body{  background-image: url(assets/fundo.png);
+    background-repeat: no-repeat;
+  background-size: cover;}
   .main-div{
+    display: flex;
+  }
+  .main-divFeed{
     display: flex;
   }
   .logo{
@@ -282,5 +285,43 @@ height: 40px;
     align-items: center;
     justify-content: center;
     background: #F7FCFC;
+  }
+  .img-pets{
+    display: flex;
+    width: 393px;
+    height: 215px;
+  }
+  .img-logo { 
+    width: 625px;
+    height: 410px;
+    margin-top: 0;
+  }
+  .fundo{
+    display: flex;
+  }
+  .feed{
+    display: flex;
+    width: 50vw;
+    height: 100vh;
+  }
+  .post {
+    width: 50vw;
+  
+  }
+  .postcont{
+    margin: auto;
+    width: 40vw;
+  
+  }
+  .postedfeed{
+    width: 45vw;
+    
+  }
+  .all-posts{
+    display: flex
+  }
+  .profile{
+    width: 50vw;
+
   }
 }
