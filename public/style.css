@@ -60,6 +60,9 @@ input, button{
   display: flex;
   margin-left: 15px;
 }
+.commentBtn {
+  border-radius: 15px;
+}
 .feed-btn-postar{
   display: flex;
   padding: 5px;
@@ -383,6 +386,9 @@ input[type='file'] {
     font-family: pacifico;
     border: none;
     background: none;
+  }
+  .comment-input {
+    border-radius: 15px;
   }
   .comment-area{
     display: flex;

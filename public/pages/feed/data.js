@@ -43,7 +43,7 @@ ref.put(arquivo).then(function(snapshot){
     });
 };
 
-export const createImage = (image, id) => {
+/* export const createImage = (image, id) => {
   const photoUser = {
     image,
   };
@@ -53,7 +53,23 @@ export const createImage = (image, id) => {
     })
     .catch(function (error) {
     });
-}
+} */
+
+/* export function createImage (event, id, func, divImg) {
+  let user = firebase.auth().currentUser.uid;
+  let arquivo = event.target.files[0];
+  let ref = firebase.storage().ref("post/" + user + "/imagePost.jpg");
+  ref.put(arquivo).then(function(snapshot){
+      ref.getDownloadURL().then(function(url){  // Now I can use url
+        firebase.firestore().collection("post").doc(id).collection('images').doc().update({
+            image: url    
+            // <- URL from uploaded photo.
+          }).then(url => {
+                func(divImg, url)
+              })
+          });
+      });
+  }; */
 
 export const createPost = (text, privacy) => {
   

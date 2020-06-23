@@ -49,7 +49,6 @@ export const feed = () => {
       const userProfile = document.createElement('div');
       userProfile.innerHTML = `
     <fieldset class='textarea-perfil'>
-   
     <div class='img-perfil'>
     <img id='img-perfil' data-id=${user.id} src=${user.photoURL}>
     <div class='btn-profile'><strong>Editar Foto</strong></div>
@@ -133,7 +132,7 @@ export const feed = () => {
     <input type="radio" name="privacy" id="private" class="btn-privacy" value="private"><img class='private btn-privacy' src='../../assets/private.png'>
     </form>
     <button id='delete-btn' class ='delet-btn'data-id= ${post.id}><img class='close' src='../../assets/close.png'></button>
-    <textarea id='text-area' data-id=${post.id} class='post' disabled>${post.text}</textarea> 
+    <textarea id='text-area' data-id=${post.id} class='post' disabled>${post.text}</textarea>
     <div class='bnt-space'>
     <button id='like-btn' class='likes-btn size' data-id= ${post.id}>
     <img class='likes size' src='../../assets/001-paw.png' width='20'>${post.likes}</button>'
@@ -143,7 +142,7 @@ export const feed = () => {
     </div>
     <div class='comments-area' id='all-comments' style="display: none;">
     <input class='comment-input' placeholder=' Digite seu comentário' type='text'>
-    <button class='commentBtn' type='submit' class=''>Comentar</button>
+    <button class='commentBtn' id='btnComment' type='submit' >Comentar</button>
     </div>
     </div>
     <div id='commented' class='commented2'>
@@ -153,11 +152,9 @@ export const feed = () => {
 
       const commentBtn = template.querySelector('#comment-btn');
       const privacyForm = template.querySelector('#privacy');
-      const commentButton = template.querySelector('.commentBtn');
+      const commentButton = template.querySelector('#btnComment');
       const allComments = template.querySelector('#commented')
       const inputComments = template.querySelector('.comment-input');
-
-     
 
       const likeBtn = template.querySelector('#like-btn');
       const deleteBtn = template.querySelector('#delete-btn');
@@ -263,7 +260,9 @@ export const feed = () => {
       commentBtn.addEventListener('click', (event) => {
         event.preventDefault();
         template.querySelector('.comments-area').style.display = 'flex';
+        readComment(post.id, templateComment)
       })
+
     }).join('');
   };
   timeline(templatePost);
