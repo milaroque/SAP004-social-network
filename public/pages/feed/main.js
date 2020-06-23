@@ -54,13 +54,14 @@ export const feed = () => {
     <div class='img-perfil'>
       <img id='img-perfil' data-id=${user.id} src=${user.photoURL}>
     </div>
-    </fieldset>${user.id} type='text' disabled>${user.name}</textarea></div>
+    </fieldset>
+    <fieldset class="textarea-perfil">
+      <div class="textarea-perfil">Nome:<textarea id='first-name' class='personal-info' data-id= ${user.id} type='text' disabled> ${user.name}</textarea></div>
     </fieldset>
     <fieldset class="textarea-location">
       <div class="textarea-location">Localização: <img class='size' src='../../assets/pin.png'><textarea id='location' class='textarea-location' type='text' data-id=${user.id} disabled>${user.location}</textarea></div>
     </fieldset> 
-    <div class='bnt-
-    spaceProfile'>
+    <div class='bnt-spaceProfile'>
       <button id='edit-btn' class='edit size' data-id= ${user.id}>
         <img class='save size' src='../../assets/edit.png'>
       </button>
