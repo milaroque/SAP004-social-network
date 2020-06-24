@@ -6,9 +6,9 @@ import { feed } from './pages/feed/main.js';
 const main = document.querySelector('#root');
 
 const routes = {
-  home: home(),
-  register: register(),
-  feed: feed()
+  home,
+  register,
+  feed
 };
 
 const validateHash = (hash) => hash === '' ? 'home' : hash.replace('#', '');
@@ -19,13 +19,13 @@ const renderPage = () => {
     if (!user) {
       main.innerHTML = '';
       if (page === 'home') {
-        main.appendChild(routes.home);
+        main.appendChild(routes.home());
       } else if (page === 'register') {
-        main.appendChild(routes.register);
+        main.appendChild(routes.register());
       }
     } else if (user) {
       main.innerHTML = '';
-      main.appendChild(routes[page]);
+      main.appendChild(routes[page]());
     }
   });
 };

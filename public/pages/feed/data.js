@@ -7,25 +7,78 @@ export const logout = () => {
     })
 }
 
-const getUrlPhoto = () => { //não exportei esta função pois ela será utilizada apenas neste escopo.
-  return firebase.auth().currentUser.photoURL; //Esqueci de dar o carai do return antes do Firebase
+export const printUser = (callback) => {
+  firebase.firestore().collection('users')
+    .onSnapshot(function (querySnapshot) {
+      
+      querySnapshot.forEach(function (doc) {
+        if (firebase.auth().currentUser.uid === doc.data().user_uid){
+        callback({ id: doc.id, user_uid: doc.user_uid, ...doc.data() })
+      }
+      });
+    });
 }
-export function printImg (event, func, divImg) {
-  let arquivo = event.target.files[0];
-  var ref = firebase.storage().ref('arquivo')
-  ref.child('arquivo' + arquivo.name).put(arquivo).then(snapshot => {
-    ref.child('arquivo' + arquivo.name).getDownloadURL().then(url => {
-      func(divImg, url)
-    })
+
+
+export const updateProfile = (id, name, location) => {
+  return firebase.firestore().collection("users").doc(id).update({
+    name: name.value,
+    location: location.value,
   })
-}
+};
+
+export function printImg (event, id, func, divImg) {
+let user = firebase.auth().currentUser.uid;
+let arquivo = event.target.files[0];
+let ref = firebase.storage().ref("Usuarios/" + user + "/profile.jpg");
+ref.put(arquivo).then(function(snapshot){
+    ref.getDownloadURL().then(function(url){  // Now I can use url
+      firebase.firestore().collection("users").doc(id).update({
+          photoURL: url    
+          // <- URL from uploaded photo.
+        }).then(url => {
+              func(divImg, url)
+            })
+        });
+    });
+};
+
+/* export const createImage = (image, id) => {
+  const photoUser = {
+    image,
+  };
+  firebase.firestore()
+    .collection('post').doc(id).collection('images').doc().set(photoUser)
+    .then(function () {
+    })
+    .catch(function (error) {
+    });
+} */
+
+/* export function createImage (event, id, func, divImg) {
+  let user = firebase.auth().currentUser.uid;
+  let arquivo = event.target.files[0];
+  let ref = firebase.storage().ref("post/" + user + "/imagePost.jpg");
+  ref.put(arquivo).then(function(snapshot){
+      ref.getDownloadURL().then(function(url){  // Now I can use url
+        firebase.firestore().collection("post").doc(id).collection('images').doc().update({
+            image: url    
+            // <- URL from uploaded photo.
+          }).then(url => {
+                func(divImg, url)
+              })
+          });
+      });
+  }; */
+
 export const createPost = (text, privacy) => {
+  
   const posts = {
     text,
     user: firebase.auth().currentUser.displayName,
-    userUid: firebase.auth().currentUser.uid,
+    user_uid: firebase.auth().currentUser.uid,
     likes: 0,
-    commentCount: 0,
+    comments: 0,
     date: new Date().toLocaleString('pt-BR'),
     privacy
   };
@@ -46,42 +99,13 @@ export const timeline = (callback) => {
     .onSnapshot(function (querySnapshot) {
       const posts = [];
       querySnapshot.forEach(function (doc) {
-        if (doc.data().privacy === 'public' || doc.data().userUid === firebase.auth().currentUser.uid) { 
-          posts.push({ id: doc.id, userUid: doc.userUid, ...doc.data()})
+        if (doc.data().privacy === 'public' || doc.data().user_uid === firebase.auth().currentUser.uid) {
+          posts.push({ id: doc.id, user_uid: doc.user_uid, ...doc.data() })
         };
+      
       });
       callback(posts);
-    });
-}
-
-export const createComment = (text, id) => {
-  const comment = {
-    text,
-    user: firebase.auth().currentUser.displayName,
-    userUid: firebase.auth().currentUser.uid,
-    date: new Date().toLocaleString('pt-BR'),
-  };
-
-  firebase.firestore()
-    .collection('post').doc(id).collection('comments').doc().set(comment)
-    .then(function () {
       
-    })
-    .catch(function (error) {
-      
-    });
-}
-
-export const readComment = (id, callback) => {
-  firebase.firestore().collection('post').doc(id).collection('comments')
-    .orderBy('date', 'desc')
-    .onSnapshot(function (querySnapshot) {
-      const comment = [];
-      querySnapshot.forEach(function (doc) {
-      comment.push({ id: doc.id, userUid: doc.userUid, ...doc.data()})
-      
-      });
-      callback(comment);
     });
 }
 
@@ -97,46 +121,58 @@ export const likePost = (id) => {
   let likesPost = firebase.firestore().collection('post').doc(id);
   likesPost.update({
     likes: firebase.firestore.FieldValue.increment(1)
-  });
+})
 }
 
 export const saveEditedPost = (id, text, privacy) => {
-return firebase.firestore().collection("post").doc(id).update({
+  return firebase.firestore().collection("post").doc(id).update({
     text: text.value,
     privacy: privacy.value,
-})
+  })
 };
 
-export const profile =()=>{
-  const user = firebase.auth().currentUser;
-  
-  
-  if (user != null) {
-    name = user.displayName; 
-    email = user.email;
-    photoUrl = user.photoURL;
-    uid = user.uid;  // The user's ID, unique to the Firebase project. Do NOT use
-                     // this value to authenticate with your backend server, if
-                     // you have one. Use User.getToken() instead.
-  if (user != null) {
-    user.providerData.forEach(function (profile) {
-    console.log("Sign-in provider: " + profile.providerId);
-    console.log("  Provider-specific UID: " + profile.uid);
-    console.log("  Name: " + profile.displayName);
-    console.log("  Email: " + profile.email);
-    console.log("  Photo URL: " + profile.photoURL);
+export const createComment = (text, id) => {
+  const comment = {
+    text,
+    user: firebase.auth().currentUser.displayName,
+    user_uid: firebase.auth().currentUser.uid,
+    date: new Date().toLocaleString('pt-BR'),
+  };
+
+  firebase.firestore()
+    .collection('post').doc(id).collection('comments').doc().set(comment)
+    .then(function () {
+
+    })
+    .catch(function (error) {
+
+    });
+}
+
+export const readComment = (id, callback) => {
+  firebase.firestore().collection('post').doc(id).collection('comments')
+    .orderBy('date', 'desc')
+    .onSnapshot(function (querySnapshot) {
+      const comment = [];
+
+      querySnapshot.forEach(function (doc) {
+        comment.push({ id: doc.id, user_uid: doc.user_uid, ...doc.data() })
+
+      });
+      callback(comment);
+    });
+}
+
+export const deleteComments = (postId, docId) => {
+  firebase.firestore().collection('post').doc(postId).collection('comments').doc(docId).delete().then(function () {
+    console.log('Document successfully deleted!');
+  }).catch(function (error) {
+    console.error('Error removing document: ', error);
   });
-  }}}
-  
-  export const updateUserProfile = () =>{
-    var user = firebase.auth().currentUser;
-  
-  user.updateProfile({
-    displayName: "Jane Q. User",
-    photoURL: "https://example.com/jane-q-user/profile.jpg"
-  }).then(function() {
-    // Update successful.
-  }).catch(function(error) {
-    // An error happened.
-  });
-  }
+}
+
+export const saveEditedComment = (postId, docId, text) => {
+  return firebase.firestore().collection("post").doc(postId).collection('comments').doc(docId).update({
+    text: text.value,
+  })
+};
