@@ -1,10 +1,10 @@
-// Aqui serão criados os eventos de Manipulação de DOM e templates
 import { userLogin, loginGoogle } from './data.js';
 
 export const home = () => {
   const container = document.createElement('div');
   container.classList.add('main-div')
-  container.innerHTML = `<div class='logo'>
+  container.innerHTML = `
+  <div class='logo'>
   <figure>
     <img class='img-logo' src='../../assets/logo-sos.png' >
   </figure>
@@ -25,9 +25,9 @@ export const home = () => {
     <button id='google-btn' class='googleBtn'><img class='google' src='../../assets/google.png'></button>
     <p class='line-none'>Ainda não tem conta?<a href='#register'> Registre-se!</a></p></li>
   </form>
-  </div>`;
+  </div>
+  `;
 
-  
   const email = container.querySelector('#email');
   const password = container.querySelector('#password');
   const loginBtn = container.querySelector('#login-btn');
