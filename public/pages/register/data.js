@@ -19,9 +19,5 @@ export const registerLogin = (email, password, name, location) => {
     .catch((error) => {
       console.log(error)
     });
-<<<<<<< HEAD
-};
-=======
   };
 };
->>>>>>> 1b890158df7eaef7d7ff1ddb33cc9dac802e1913
