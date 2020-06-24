@@ -6,9 +6,9 @@ import { feed } from './pages/feed/main.js';
 const main = document.querySelector('#root');
 
 const routes = {
-  home: home,
-  register: register,
-  feed: feed
+  home,
+  register,
+  feed
 };
 
 const validateHash = (hash) => hash === '' ? 'home' : hash.replace('#', '');
