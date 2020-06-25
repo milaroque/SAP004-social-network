@@ -24,7 +24,7 @@ export const register = () => {
         <input id='location-register' class='btn' placeholder='Localização' type='text' >
       </fieldset>
       <button id='register-btn' class='register-btn'>Cadastrar </button>
-      <p class='line-none'>Já tem cadastro? Faça o <a href='#home'>Login</a></p>
+        <p class='line-none'>Já tem cadastro? Faça o <a href='#home'>Login</a></p>
     </form>
   </div>
   `;

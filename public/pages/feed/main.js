@@ -23,20 +23,19 @@ export const feed = () => {
   <main class ='feed'>
   <form  id='form' class='postfeed'>
     <div id='privacy' class='privacy'>
-        <input type='radio' name='privacy' id='public' class='btn-privacy' value='public' checked>
+      <input type='radio' name='privacy' id='public' class='btn-privacy' value='public' checked>
         <img class='public' src='../../assets/public.png' width='30'>
-        <input type='radio' name='privacy' id='private' class='btn-privacy' value='private'>
+      <input type='radio' name='privacy' id='private' class='btn-privacy' value='private'>
         <img class='private' src='../../assets/private.png' width='30'>
-      </div>  
-      <fieldset class='postcont'>    
-      <textarea id='post-input' class='btn post' placeholder='Compartilhe sua mensagem' type='text'>
-      </textarea>
+    </div>  
+    <fieldset class='postcont'>    
+      <textarea id='post-input' class='btn post' placeholder='Compartilhe sua mensagem' type='text'></textarea>
       <button id='post-btn' type='submit' class='feed-btn-postar'>Postar</button>
     </fieldset>
   <div id='all-posts'>
   </form>
   </main>
-  </div>
+</div>
   `;
 
   const logoutBtn = container.querySelector('#logout-btn');
@@ -50,11 +49,11 @@ export const feed = () => {
     event.preventDefault();
     logout();
   });
-  
+
   const templateProfile = (user) => {
     profile.innerHTML = '';
     const userProfile = document.createElement('div');
-    userProfile.className='profileBox';
+    userProfile.className = 'profileBox';
     userProfile.innerHTML = `
     <div class='img-perfil'>
       <figure class='pic-profile'> 
@@ -64,13 +63,13 @@ export const feed = () => {
         <textarea id='first-name' class='personal-info' data-id= ${user.id} type='text' disabled>${user.name}</textarea>
         <div class='textarea-location'>Localização: 
           <img class='pin' src='../../assets/pin.png'> <textarea id='location' class='textarea-location' type='text' data-id=${user.id} disabled>${user.location}</textarea>
-        </div>          
-      </div>
+      </div>          
     </div>
+  </div>
   <div class='edit-btn'>
-  <label for='foto-perfil' class='btn-profile'><strong>Editar Foto</strong>
-  <input id='foto-perfil' type='file'>
-  </label>
+    <label for='foto-perfil' class='btn-profile'><strong>Editar Foto</strong>
+      <input id='foto-perfil' type='file'>
+    </label>
   <div class='bnt-spaceProfile'>
     <button id='edit-btn' class='edit-profile' data-id= ${user.id}>
       <img class='edit-profile' src='../../assets/edit.png'>
@@ -78,8 +77,8 @@ export const feed = () => {
     <button id='save-btn' class='edit-profile' data-id= ${user.id}>
       <img class='edit-profile' src='../../assets/tick.png'>
     </button>
-    </div>
   </div>
+</div>
   `;
 
     profile.appendChild(userProfile);
@@ -133,32 +132,35 @@ export const feed = () => {
       template.classList.add('template');
       template.innerHTML = `
       <div class='postedfeed'>
-      <div class='userPost'>
-      <p id ='datePost'class='posted-for'>${post.user}, em ${post.date}
-      </p>
-    <button id='delete-btn' class ='delet-btn'data-id= ${post.id}><img class='close' src='../../assets/close.png'></button>
-    </div>
-    <form id='privacy' style='display: none;' class='privacy'>
-      <input type='radio' name='privacy' id='public' class='btn-privacy' value='public' checked><img class='public btn-privacy' src='../../assets/public.png'>
-    <input type='radio' name='privacy' id='private' class='btn-privacy' value='private'><img class='private btn-privacy' src='../../assets/private.png'>
-    </form>
-    <textarea id='text-area' data-id=${post.id} class='post' disabled>${post.text}</textarea>
-    <div class='bnt-space'>
-    <button id='like-btn' class='likes-btn size' data-id= ${post.id}>
-    <img class='likes size' src='../../assets/001-paw.png' width='20'>${post.likes}</button>
-    <button id='comment-btn' class ='comment-btn' data-id= ${post.id}><img class='likes size' src='../../assets/comment.png' width='20'></button> <br>
-    <button id='edit-btn' class='edit size' data-id= ${post.id}><img class='save size' src='../../assets/edit.png'></button>
-    <button id='save-btn' style='display: none;' class='save size' data-id= ${post.id}><img class='save size' src='../../assets/tick.png'></button>
-    </div>
-    <div class='comments-area' id='all-comments' style='display: none;'>
-    <textarea class='comment-input' placeholder=' Digite seu comentário' type='text'>
-    </textarea>
-    <button class='commentBtn' id='btnComment' type='submit' >Comentar</button>
-    </div>
-    </div>
-    <div id='commented' class='commented2' style='display: none;'>${post.comments}
-    </div>
-    `;
+        <div class='userPost'>
+          <p id ='datePost'class='posted-for'>${post.user}, em ${post.date}</p>
+          <button id='delete-btn' class ='delet-btn'data-id= ${post.id}><img class='close' src='../../assets/close.png'></button>
+        </div>
+        <form id='privacy' style='display: none;' class='privacy'>
+          <input type='radio' name='privacy' id='public' class='btn-privacy' value='public' checked>
+            <img class='public btn-privacy' src='../../assets/public.png'>
+          <input type='radio' name='privacy' id='private' class='btn-privacy' value='private'>
+            <img class='private btn-privacy' src='../../assets/private.png'>
+        </form>
+        <textarea id='text-area' data-id=${post.id} class='post' disabled>${post.text}</textarea>
+        <div class='bnt-space'>
+          <button id='like-btn' class='likes-btn size' data-id= ${post.id}>
+            <img class='likes size' src='../../assets/001-paw.png' width='20'>${post.likes}</button>
+          <button id='comment-btn' class ='comment-btn' data-id= ${post.id}>
+            <img class='likes size' src='../../assets/comment.png' width='20'></button> <br>
+          <button id='edit-btn' class='edit size' data-id= ${post.id}>
+            <img class='save size' src='../../assets/edit.png'></button>
+          <button id='save-btn' style='display: none;' class='save size' data-id= ${post.id}>
+            <img class='save size' src='../../assets/tick.png'></button>
+        </div>
+        <div class='comments-area' id='all-comments' style='display: none;'>
+          <textarea class='comment-input' placeholder=' Digite seu comentário' type='text'></textarea>
+          <button class='commentBtn' id='btnComment' type='submit' >Comentar</button>
+        </div>
+      </div>
+      <div id='commented' class='commented2' style='display: none;'>${post.comments}
+      </div>
+      `;
 
       allPosts.appendChild(template);
 
@@ -197,31 +199,34 @@ export const feed = () => {
           textArea.disabled = true;
           saveEditedPost(saveBtn.dataset.id, textArea, privacyForm.privacy);
         });
-        likeBtn.addEventListener('click', (event) => {
-          event.preventDefault();
-          likePost(likeBtn.dataset.id);
-        });
       } else {
         editBtn.style.display = 'none';
         deleteBtn.style.display = 'none';
         privacyBtn.style.display = 'none';
         datePost.style.display = 'flex';
       };
-      
+      likeBtn.addEventListener('click', (event) => {
+        event.preventDefault();
+        likePost(likeBtn.dataset.id);
+      });
+
       const templateComment = (arrayComments) => {
         allComments.innerHTML = '';
         arrayComments.map(comment => {
           const containerComment = document.createElement('div');
           containerComment.innerHTML = `
         <div class='commented'>
-        <div class='commentedInfo'><p>${comment.user}, em ${comment.date}</p>
-        <button id='delete-comment' class ='delet-btn'data-id= ${comment.id}><img class='close' src='../../assets/close.png'></button>
-        </div><hr>
-        <textarea id='text-area' class='comment-area post-comment' data-id=${comment.id} disabled>${comment.text}</textarea>
-        <div class='btn-comment'>
-        <button id='edit-comment' class='edit size' data-id= ${comment.id}><img class='save size' src='../../assets/edit.png'></button>
-      <button id='save-comment' style='display: none;' class='save size' data-id= ${comment.id}><img class='save size' src='../../assets/tick.png'></button>
-      </div>
+          <div class='commentedInfo'><p>${comment.user}, em ${comment.date}</p>
+            <button id='delete-comment' class ='delet-btn'data-id= ${comment.id}>
+              <img class='close' src='../../assets/close.png'></button>
+            </div><hr>
+          <textarea id='text-area' class='comment-area post-comment' data-id=${comment.id} disabled>${comment.text}</textarea>
+          <div class='btn-comment'>
+            <button id='edit-comment' class='edit size' data-id= ${comment.id}>
+              <img class='save size' src='../../assets/edit.png'></button>
+            <button id='save-comment' style='display: none;' class='save size' data-id= ${comment.id}>
+              <img class='save size' src='../../assets/tick.png'></button>
+          </div>
         </div>
         `;
 

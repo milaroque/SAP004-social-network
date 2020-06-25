@@ -92,7 +92,6 @@ button{
   background-color:#00c3ac25;
   border: solid 1px rgba(105, 105, 105, 0.904);;
   width: 100vw;
-  
 }
 .img-perfil {
   display: flex;
@@ -156,7 +155,7 @@ button{
   background-color: whitesmoke;
   margin-top: 24px;
 }
-.commented2 {
+.commented2{
   text-align: center;
   border: none;
   background-color: rgba(245, 245, 245, 0.637);
@@ -275,7 +274,7 @@ button{
   border-style: none;
   background: none;
 }
- .textarea-info{
+.textarea-info{
   display: flex;
   background: none;
   border:none;
@@ -368,7 +367,7 @@ input[type='file']{
   justify-content: flex-end;
 }
 .post-comment{
-  width:55vw ;
+  width:55vw;
 }
 .comment-input{ 
   box-shadow: none;
@@ -387,7 +386,7 @@ input[type='file']{
   width: 90vw;
   height: 29px;
 }
-@media(min-width:800px){
+  @media(min-width:800px){
   .main-div{
     display: flex;
   }
@@ -428,7 +427,7 @@ input[type='file']{
     width: 393px;
     height: 215px;
   }
-  .img-logo { 
+  .img-logo{ 
     width: 625px;
     height: 410px;
     margin-top: 0;
@@ -514,7 +513,6 @@ input[type='file']{
     border: none;
     background: none;
     align-items: center;
-   
   }
   .bnt-spaceProfile{
     display: flex;
@@ -538,7 +536,7 @@ input[type='file']{
     background: none;
     display: flex;
   }
-  .img-perfil > img {
+  .img-perfil > img{
     width: 9vw;
   }
   .img-profile{
