@@ -57,7 +57,7 @@ export const feed = () => {
       <div>
         <textarea id='first-name' class='personal-info' data-id= ${user.id} type='text' disabled>${user.name}</textarea>
         <div class='textarea-location'>Localização: 
-          <img class='size pin' src='../../assets/pin.png'> <textarea id='location' class='textarea-location' type='text' data-id=${user.id} disabled>${user.location}</textarea>
+          <img class='pin' src='../../assets/pin.png'> <textarea id='location' class='textarea-location' type='text' data-id=${user.id} disabled>${user.location}</textarea>
         </div>          
       </div>
     </div>
@@ -210,7 +210,7 @@ export const feed = () => {
         <div class='commented'> 
           <div class='commentedInfo'><p>${comment.user}, em ${comment.date}</p>
             <button id='delete-comment' class ='delet-btn'data-id= ${comment.id}><img class='close' src='../../assets/close.png'></button>
-          </div>  <hr>
+          </div><hr>
          <textarea id='text-area' class='comment-area post-comment' data-id=${comment.id} disabled>${comment.text}</textarea><hr>
         <div class='btn-comment'>
         <button id='edit-comment' class='edit size' data-id= ${comment.id}><img class='save size' src='../../assets/edit.png'></button>
@@ -289,3 +289,5 @@ export const feed = () => {
   printUser(templateProfile);
   return container;
 };
+
+

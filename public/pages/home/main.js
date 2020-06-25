@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-
-// Aqui serão criados os eventos de Manipulação de DOM e templates
-=======
->>>>>>> 1b890158df7eaef7d7ff1ddb33cc9dac802e1913
 import { userLogin, loginGoogle } from './data.js';
 
 export const home = () => {
