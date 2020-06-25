@@ -92,7 +92,6 @@ export const createPost = (text, privacy) => {
       console.error('Error adding document: ', error);
     });
 }
-
 export const timeline = (callback) => {
   firebase.firestore().collection('post')
     .orderBy('date', 'desc')
@@ -108,7 +107,6 @@ export const timeline = (callback) => {
       
     });
 }
-
 export const deletePost = (id) => {
   firebase.firestore().collection('post').doc(id).delete().then(function () {
     console.log('Document successfully deleted!');
