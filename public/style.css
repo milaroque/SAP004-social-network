@@ -93,6 +93,12 @@ button{
   border: solid 1px rgba(105, 105, 105, 0.904);;
   width: 100vw;
 }
+.profileBox{
+  background-color:#00c3ac25;
+  border: solid 1px rgba(105, 105, 105, 0.904);;
+  width: 100vw;
+  
+}
 .img-perfil {
   display: flex;
   width: 100vw;

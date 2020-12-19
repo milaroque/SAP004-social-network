@@ -6,6 +6,7 @@ import {
 export const feed = () => {
   const container = document.createElement('div');
   document.body.className = 'main-feed';
+  
   container.innerHTML = ` 
   <div class='fundo'>
   <div class='navbar'>
@@ -57,7 +58,7 @@ export const feed = () => {
     userProfile.innerHTML = `
     <div class='img-perfil'>
       <figure class='pic-profile'> 
-        <img id='img-perfil' class='pic-profile' data-id=${user.id} src=${user.photoURL || '../../assets/pri.jpeg'}>
+        <img id='img-perfil' class='pic-profile' data-id=${user.id} src=${user.photoURL}>
       </figure>   
       <div>
         <textarea id='first-name' class='personal-info' data-id= ${user.id} type='text' disabled>${user.name}</textarea>
@@ -92,39 +93,40 @@ export const feed = () => {
 
     inputImg.onchange = function (event) {
       printImg(event, user.id, divImagem, divImg)
-    };
-
+    }
     const divImagem = (divImg, url) => {
       return divImg.innerHTML += `<img src ='${url}'>`
-    };
-
+    }
     editProfileBtn.addEventListener('click', (event) => {
       event.preventDefault();
       textName.disabled = false;
       textLocation.disabled = false;
-      return editProfileBtn.dataset.id;
-    });
-
+      return editProfileBtn.dataset.id
+    })
     saveEditedProfileBtn.addEventListener('click', (event) => {
       event.preventDefault();
       textName.disabled = true;
       textLocation.disabled = true;
-      updateProfile(saveEditedProfileBtn.dataset.id, textName, textLocation);
-    });
-  };
+      updateProfile(saveEditedProfileBtn.dataset.id, textName, textLocation)
+    })
+  }
+
+  logoutBtn.addEventListener('click', (event) => {
+    event.preventDefault();
+    logout();
+  });
 
   postBtn.addEventListener('click', (event) => {
     event.preventDefault();
-    if (inputPost.value === '') {
-      console.log('campo vazio');
-    } else {
-      createPost(inputPost.value, form.privacy.value);
-      allPosts.innerHTML = '';
-      timeline(templatePost);
-      inputPost.value = '';
-    };
+    if (inputPost.value === ''){
+      console.log('campo vazio')
+    }else{
+    createPost(inputPost.value, form.privacy.value);
+    allPosts.innerHTML = '';
+    timeline(templatePost);
+    inputPost.value = '';
+    }
   });
-
   const templatePost = (arrayPosts) => {
     allPosts.innerHTML = '';
     arrayPosts.map(post => {
@@ -167,20 +169,22 @@ export const feed = () => {
       const commentBtn = template.querySelector('#comment-btn');
       const privacyForm = template.querySelector('#privacy');
       const commentButton = template.querySelector('#btnComment');
-      const allComments = template.querySelector('#commented');
+      const allComments = template.querySelector('#commented')
       const inputComments = template.querySelector('.comment-input');
+
       const likeBtn = template.querySelector('#like-btn');
       const deleteBtn = template.querySelector('#delete-btn');
       const editBtn = template.querySelector('#edit-btn');
       const saveBtn = template.querySelector('#save-btn');
-      const privacyBtn = template.querySelector('#privacy');
-      const datePost = template.querySelector('#datePost');
-
+      const privacyBtn = template.querySelector('#privacy')
+      const datePost = template.querySelector('#datePost')
+ 
+    
       if (post.user_uid === firebase.auth().currentUser.uid) {
         deleteBtn.addEventListener('click', (event) => {
           event.preventDefault();
           deletePost(deleteBtn.dataset.id);
-        });
+        })
         const editPost = () => {
           const textArea = template.querySelector('#text-area');
           textArea.disabled = false;
@@ -188,11 +192,11 @@ export const feed = () => {
         };
         editBtn.addEventListener('click', (event) => {
           event.preventDefault();
-          editPost(editBtn);
-          saveBtn.style.display = 'flex';
-          privacyBtn.style.display = 'flex';
-          datePost.style.display = 'none';
-        });
+          editPost(editBtn)
+          saveBtn.style.display = 'flex'
+          privacyBtn.style.display = 'flex'
+          datePost.style.display = 'none'
+        })
         saveBtn.addEventListener('click', (event) => {
           event.preventDefault();
           const textArea = template.querySelector('#text-area');
@@ -213,7 +217,7 @@ export const feed = () => {
       const templateComment = (arrayComments) => {
         allComments.innerHTML = '';
         arrayComments.map(comment => {
-          const containerComment = document.createElement('div');
+          const containerComment = document.createElement('div')
           containerComment.innerHTML = `
         <div class='commented'>
           <div class='commentedInfo'><p>${comment.user}, em ${comment.date}</p>
@@ -228,77 +232,77 @@ export const feed = () => {
               <img class='save size' src='../../assets/tick.png'></button>
           </div>
         </div>
-        `;
-
-          allComments.appendChild(containerComment);
+        `
+          allComments.appendChild(containerComment)
 
           const deleteComment = containerComment.querySelector('#delete-comment');
           const editComments = containerComment.querySelector('#edit-comment');
           const saveComment = containerComment.querySelector('#save-comment');
 
           if (comment.user_uid === firebase.auth().currentUser.uid) {
-            deleteComment.addEventListener('click', (event) => {
-              event.preventDefault();
-              deleteComments(post.id, deleteComment.dataset.id);
-            });
+          deleteComment.addEventListener('click', (event) => {
+            event.preventDefault();
+            deleteComments(post.id, deleteComment.dataset.id);
+          })
 
-            const editComment = () => {
-              const textComment = containerComment.querySelector('#text-area');
-              textComment.disabled = false;
-              textComment.style.color = 'black';
-            };
-
-            editComments.addEventListener('click', (event) => {
-              event.preventDefault();
-              editComment(editComments.dataset.id);
-              saveComment.style.display = 'flex';
-            });
-            saveComment.addEventListener('click', (event) => {
-              event.preventDefault();
-              const textComment = containerComment.querySelector('#text-area');
-              textComment.disabled = true;
-              saveEditedComment(post.id, saveComment.dataset.id, textComment);
-            });
-          } else {
-            editComments.style.display = 'none';
-            deleteComment.style.display = 'none';
+          const editComment = () => {
+            const textComment = containerComment.querySelector('#text-area');
+            textComment.disabled = false;
+            textComment.style.color = 'black';
           };
-        });
-      };
+
+          editComments.addEventListener('click', (event) => {
+            event.preventDefault();
+            editComment(editComments.dataset.id);
+            saveComment.style.display = 'flex';
+          })
+          saveComment.addEventListener('click', (event) => {
+            event.preventDefault();
+            const textComment = containerComment.querySelector('#text-area');
+            textComment.disabled = true;
+            saveEditedComment(post.id, saveComment.dataset.id, textComment)
+          })
+        }else {
+        editComments.style.display = 'none';
+        deleteComment.style.display = 'none';
+        }
+        })
+      }
 
       commentButton.addEventListener('click', (event) => {
         event.preventDefault();
-        if (inputComments.value === '') {
-          console.log('campo vazio');
-        } else {
-          createComment(inputComments.value, post.id);
-          allComments.innerHTML = '';
-          readComment(post.id, templateComment);
-          inputComments.value = '';
-        };
+        if (inputComments.value === ''){
+          console.log('campo vazio')
+        }else{
+        createComment(inputComments.value, post.id);
+        allComments.innerHTML = '';
+        readComment(post.id, templateComment);
+        inputComments.value = '';
+        }
       });
 
       commentBtn.addEventListener('click', (event) => {
         event.preventDefault();
-        toHideDivs('#all-comments', '#commented');
-      });
+       toHideDivs('#all-comments', '#commented')
+      })
 
       function toHideDivs(divPost, divCom) {
         let displayPost = template.querySelector(divPost).style.display;
         let displayComment = template.querySelector(divCom).style.display;
-        if (displayPost == 'none') {
+        if(displayPost == "none"){
           template.querySelector(divPost).style.display = 'flex';
           template.querySelector(divCom).style.display = 'block';
-          readComment(post.id, templateComment);
-        } else if (displayPost == 'flex' || displayComment == 'block') {
-          template.querySelector(divPost).style.display = 'none';
-          template.querySelector(divCom).style.display = 'none';
-        };
-      };
-
+            readComment(post.id, templateComment)
+      }else if (displayPost == "flex" || displayComment == 'block') {
+        template.querySelector(divPost).style.display = 'none';
+        template.querySelector(divCom).style.display = 'none';
+    }
+  }
     }).join('');
   };
   timeline(templatePost);
   printUser(templateProfile);
   return container;
 };
+
+
